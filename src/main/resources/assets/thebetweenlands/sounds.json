@@ -1840,7 +1840,7 @@
       "sounds":[
          "thebetweenlands:anadia_won"
       ]
-   },
+   }
   "ambient_blood_sky_roar": {
     "sounds": [
       "thebetweenlands:ambience/ambient_blood_sky_roar"
