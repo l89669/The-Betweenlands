@@ -63,7 +63,7 @@ public class EntityOlm extends EntityCreature implements IEntityBL {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.FISH_DEATH;
+        return SoundRegistry.ANGLER_DEATH;
     }
 
     @Override

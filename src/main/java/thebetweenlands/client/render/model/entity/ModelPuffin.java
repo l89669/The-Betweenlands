@@ -35,8 +35,6 @@ public class ModelPuffin extends MowzieModelBase {
 	    MowzieModelRenderer wingright1;
 	    MowzieModelRenderer wingright2;
 
-	    MowzieModelRenderer[] parts;
-
 	    public ModelPuffin() {
 	        textureWidth = 64;
 	        textureHeight = 32;

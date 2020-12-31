@@ -39,8 +39,6 @@ public class ModelOlm extends MowzieModelBase {
     MowzieModelRenderer leg_back_left1b;
     MowzieModelRenderer leg_back_right1b;
 
-    MowzieModelRenderer[] parts;
-
     public ModelOlm() {
         textureWidth = 32;
         textureHeight = 32;
