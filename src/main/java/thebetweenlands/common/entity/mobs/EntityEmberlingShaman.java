@@ -46,7 +46,6 @@ public class EntityEmberlingShaman extends EntityMob implements IEntityMultiPart
 
 	public EntityEmberlingShaman(World world) {
 		super(world);
-		this.experienceValue = 7;
 		setSize(0.9F, 1F);
 		stepHeight = 1F;
 		isImmuneToFire = true;

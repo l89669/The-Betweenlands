@@ -36,9 +36,6 @@ public class ElixirEffect {
 	private ElixirPotionEffect potionEffect;
 	private ResourceLocation potionID;
 	private boolean isAntiInfusion = false;
-	private boolean showInBook = false;
-	
-	
 	public ElixirEffect(int id, String name) {
 		this(id, name, null, 0x00000000);
 	}
@@ -56,15 +53,6 @@ public class ElixirEffect {
 		this.color = color;
 	}
 
-	public ElixirEffect setShowInBook() {
-		this.showInBook = true;
-		return this;
-	}
-
-	public boolean shouldShowInBook() {
-		return this.showInBook;
-	}
-	
 	public PotionEffect createEffect(int duration, int strength) {
 		return new PotionEffect(Potion.getPotionFromResourceLocation(this.potionID.toString()), duration, strength);
 	}

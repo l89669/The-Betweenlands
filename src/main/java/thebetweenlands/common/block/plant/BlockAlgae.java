@@ -11,7 +11,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -25,11 +24,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thebetweenlands.common.block.IConnectedTextureBlock;
 import thebetweenlands.common.entity.rowboat.EntityWeedwoodRowboat;
-import thebetweenlands.common.item.ItemWaterPlaceable;
 import thebetweenlands.common.registries.BlockRegistry;
-import thebetweenlands.common.registries.BlockRegistry.ICustomItemBlock;
 
-public class BlockAlgae extends BlockPlant implements IConnectedTextureBlock, ICustomItemBlock {
+public class BlockAlgae extends BlockPlant implements IConnectedTextureBlock {
 	protected static final AxisAlignedBB ALGAE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1D, 0.08D, 1D);
 
 	public BlockAlgae() {
@@ -105,14 +102,9 @@ public class BlockAlgae extends BlockPlant implements IConnectedTextureBlock, IC
 			return p.getY() <= pos.getY() && (worldIn.getBlockState(p).getBlock() == this || worldIn.getBlockState(p.down()).isFullCube());
 		}, false);
 	}
-
+	
 	@Override
 	public boolean isFaceConnectedTexture(EnumFacing face) {
 		return face == EnumFacing.UP;
-	}
-
-	@Override
-	public ItemBlock getItemBlock() {
-		return new ItemWaterPlaceable(this);
 	}
 }

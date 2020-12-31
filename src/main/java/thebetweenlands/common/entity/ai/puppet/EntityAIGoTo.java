@@ -26,10 +26,6 @@ public class EntityAIGoTo extends EntityAIBase {
 		this.failedPathFindingPenalty = 0;
 		this.taskOwner.getNavigator().clearPath();
 	}
-	
-	public BlockPos getTarget() {
-		return this.pos;
-	}
 
 	@Override
 	public boolean shouldExecute() {

@@ -1,6 +1,5 @@
 package thebetweenlands.common.entity.draeton;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -2305,11 +2304,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 		int numParts = buffer.readInt();
 		for(int i = 0; i < numParts; i++) {
 			MessageUpdateDraetonPhysicsPart msg = new MessageUpdateDraetonPhysicsPart();
-			try {
-				msg.deserialize(packetBuffer);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			msg.deserialize(packetBuffer);
 			msg.processClient(this);
 		}
 	}

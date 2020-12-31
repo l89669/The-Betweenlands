@@ -42,7 +42,6 @@ import thebetweenlands.common.entity.mobs.EntitySiltCrab;
 import thebetweenlands.common.entity.mobs.EntitySludge;
 import thebetweenlands.common.entity.mobs.EntitySmollSludge;
 import thebetweenlands.common.entity.mobs.EntitySporeling;
-import thebetweenlands.common.entity.mobs.EntitySwarm;
 import thebetweenlands.common.entity.mobs.EntityTermite;
 import thebetweenlands.common.entity.mobs.EntityTinySludgeWorm;
 import thebetweenlands.common.entity.mobs.EntityTinySludgeWormHelper;
@@ -103,10 +102,6 @@ import thebetweenlands.common.item.herblore.ItemDentrothystVial;
 import thebetweenlands.common.item.herblore.ItemElixir;
 import thebetweenlands.common.item.herblore.ItemManualHL;
 import thebetweenlands.common.item.herblore.ItemPlantDrop;
-import thebetweenlands.common.item.herblore.ItemScrivenerTool;
-import thebetweenlands.common.item.herblore.rune.ItemRune;
-import thebetweenlands.common.item.herblore.rune.ItemRuneChain;
-import thebetweenlands.common.item.herblore.rune.ItemRunelet;
 import thebetweenlands.common.item.misc.ItemAmateMap;
 import thebetweenlands.common.item.misc.ItemAmuletSlot;
 import thebetweenlands.common.item.misc.ItemAngryPebble;
@@ -342,7 +337,7 @@ public class ItemRegistry {
     public static final Item PREDATOR_BOW = new ItemPredatorBow();
     public static final Item WIGHTS_BANE = new ItemLootSword(BLMaterialRegistry.TOOL_WEEDWOOD).addInstantKills(EntityWight.class).setMaxDamage(32);
     public static final Item SLUDGE_SLICER = new ItemLootSword(BLMaterialRegistry.TOOL_WEEDWOOD).addInstantKills(EntitySludge.class, EntitySmollSludge.class).setMaxDamage(32);
-    public static final Item CRITTER_CRUNCHER = new ItemLootSword(BLMaterialRegistry.TOOL_WEEDWOOD).addInstantKills(EntityBloodSnail.class, EntityDragonFly.class, EntityFirefly.class, EntityLeech.class, EntityMireSnail.class, EntitySporeling.class, EntityTermite.class, EntityChiromaw.class, EntitySwarm.class).setMaxDamage(32);
+    public static final Item CRITTER_CRUNCHER = new ItemLootSword(BLMaterialRegistry.TOOL_WEEDWOOD).addInstantKills(EntityBloodSnail.class, EntityDragonFly.class, EntityFirefly.class, EntityLeech.class, EntityMireSnail.class, EntitySporeling.class, EntityTermite.class, EntityChiromaw.class).setMaxDamage(32);
     public static final Item HAG_HACKER = new ItemHagHacker();
     public static final Item VOODOO_DOLL = new ItemVoodooDoll();
     public static final Item SWIFT_PICK = new ItemSwiftPick();
@@ -429,8 +424,7 @@ public class ItemRegistry {
     public static final Item CRIMSON_MIDDLE_GEM = new ItemGem(CircleGemType.CRIMSON);
     public static final Item AQUA_MIDDLE_GEM = new ItemGem(CircleGemType.AQUA);
     public static final Item GREEN_MIDDLE_GEM = new ItemGem(CircleGemType.GREEN);
-    public static final Item LIFE_CRYSTAL = new ItemLifeCrystal(128, true);
-    public static final Item LIFE_CRYSTAL_FRAGMENT = new ItemLifeCrystal(64, false);
+    public static final Item LIFE_CRYSTAL = new ItemLifeCrystal();
     public static final Item TEST_ITEM = new TestItem();
     public static final Item TEST_ITEM_CHIMP = new TestItemChimp();
     public static final Item TEST_ITEM_CHIMP_RULER = new TestItemChimpRuler();
@@ -489,28 +483,10 @@ public class ItemRegistry {
     public static final Item WEEDWOOD_ROWBOAT_UPGRADE_LANTERN = new Item().setCreativeTab(BLCreativeTabs.ITEMS).setMaxStackSize(1);
     public static final Item SNOT_POD = new ItemSnotPod();
     
-    public static final Item RUNE_CHAIN = new ItemRuneChain();
-    public static final Item SCRIVENER_TOOL = new ItemScrivenerTool();
-    
-    public static final ItemRune WEEDWOOD_RUNE = new ItemRune(new ResourceLocation(ModInfo.ID, "weedwood"));
-    public static final ItemRune PITSTONE_RUNE = new ItemRune(new ResourceLocation(ModInfo.ID, "pitstone"));
-    public static final ItemRune DENTROTHYST_GREEN_RUNE = new ItemRune(new ResourceLocation(ModInfo.ID, "dentrothyst_green"));
-    public static final ItemRune DENTROTHYST_ORANGE_RUNE = new ItemRune(new ResourceLocation(ModInfo.ID, "dentrothyst_orange"));
-    public static final ItemRune BONE_RUNE = new ItemRune(new ResourceLocation(ModInfo.ID, "bone"));
-    public static final ItemRune ANCIENT_RUNE = new ItemRune(new ResourceLocation(ModInfo.ID, "ancient"));
-    
-    public static final Item WEEDWOOD_RUNELET = new ItemRunelet(() -> WEEDWOOD_RUNE);
-    public static final Item PITSTONE_RUNELET = new ItemRunelet(() -> PITSTONE_RUNE);
-    public static final Item DENTROTHYST_GREEN_RUNELET = new ItemRunelet(() -> DENTROTHYST_GREEN_RUNE);
-    public static final Item DENTROTHYST_ORANGE_RUNELET = new ItemRunelet(() -> DENTROTHYST_ORANGE_RUNE);
-    public static final Item BONE_RUNELET = new ItemRunelet(() -> BONE_RUNE);
-    public static final Item ANCIENT_RUNELET = new ItemRunelet(() -> ANCIENT_RUNE);
-    
     private static final List<ItemStack> ORES = new ArrayList<ItemStack>();
     private static final List<ItemStack> INGOTS = new ArrayList<ItemStack>();
     private static final List<ItemStack> NUGGETS = new ArrayList<ItemStack>();
-    
-
+ 
     private ItemRegistry() {
 
     }
@@ -620,7 +596,6 @@ public class ItemRegistry {
 		OreDictionary.registerOre("gemCrimsonMiddleGem", new ItemStack(ItemRegistry.CRIMSON_MIDDLE_GEM));
 		OreDictionary.registerOre("gemGreenMiddleGem", new ItemStack(ItemRegistry.GREEN_MIDDLE_GEM));
 		OreDictionary.registerOre("gemLifeCrystal", new ItemStack(ItemRegistry.LIFE_CRYSTAL, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("gemLifeCrystal", new ItemStack(ItemRegistry.LIFE_CRYSTAL_FRAGMENT, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("gemScabyst", EnumItemMisc.SCABYST.create(1));
 
 		OreDictionary.registerOre("logWood", new ItemStack(BlockRegistry.WEEDWOOD, 1, OreDictionary.WILDCARD_VALUE));

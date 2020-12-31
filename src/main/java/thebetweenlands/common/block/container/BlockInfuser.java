@@ -40,7 +40,6 @@ import thebetweenlands.client.render.particle.ParticleFactory.ParticleArgs;
 import thebetweenlands.client.tab.BLCreativeTabs;
 import thebetweenlands.common.config.BetweenlandsConfig;
 import thebetweenlands.common.herblore.aspect.AspectManager;
-import thebetweenlands.common.item.misc.ItemLifeCrystal;
 import thebetweenlands.common.item.tools.ItemBLBucket;
 import thebetweenlands.common.registries.FluidRegistry;
 import thebetweenlands.common.registries.ItemRegistry;
@@ -119,7 +118,7 @@ public class BlockInfuser extends BlockContainer {
 					}
 				}
 
-				if(!heldItem.isEmpty() && heldItem.getItem() instanceof ItemLifeCrystal) {
+				if(!heldItem.isEmpty() && heldItem.getItem() == ItemRegistry.LIFE_CRYSTAL) {
 					if(tile.getStackInSlot(TileEntityInfuser.MAX_INGREDIENTS + 1).isEmpty()) {
 						tile.setInventorySlotContents(TileEntityInfuser.MAX_INGREDIENTS + 1, heldItem);
 						tile.updateInfusingRecipe();

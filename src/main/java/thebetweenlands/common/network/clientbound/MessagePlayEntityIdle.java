@@ -1,7 +1,5 @@
 package thebetweenlands.common.network.clientbound;
 
-import java.io.IOException;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
@@ -31,7 +29,7 @@ public class MessagePlayEntityIdle extends MessageEntity {
 	}
 
 	@Override
-	public void deserialize(PacketBuffer buf) throws IOException {
+	public void deserialize(PacketBuffer buf) {
 		super.deserialize(buf);
 		this.sound = (SoundEvent)SoundEvent.REGISTRY.getObjectById(buf.readInt());
 		this.category = (SoundCategory)buf.readEnumValue(SoundCategory.class);

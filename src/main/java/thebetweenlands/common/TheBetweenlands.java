@@ -1,5 +1,6 @@
 package thebetweenlands.common;
 
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +15,6 @@ import net.minecraftforge.fml.common.Mod.InstanceFactory;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -25,11 +25,8 @@ import thebetweenlands.common.block.farming.BlockGenericDugSoil;
 import thebetweenlands.common.block.plant.BlockWeedwoodBush;
 import thebetweenlands.common.capability.base.EntityCapabilityHandler;
 import thebetweenlands.common.capability.base.ItemCapabilityHandler;
-import thebetweenlands.common.capability.blessing.BlessingEntityCapability;
 import thebetweenlands.common.capability.collision.RingOfDispersionEntityCapability;
-import thebetweenlands.common.capability.lastkilled.LastKilledCapability;
 import thebetweenlands.common.capability.playermounts.PlayerMountsEntityCapability;
-import thebetweenlands.common.capability.swarmed.SwarmedCapability;
 import thebetweenlands.common.command.CommandAspectDiscovery;
 import thebetweenlands.common.command.CommandBLEvent;
 import thebetweenlands.common.command.CommandDecay;
@@ -51,8 +48,8 @@ import thebetweenlands.common.handler.BlockBreakHandler;
 import thebetweenlands.common.handler.BossHandler;
 import thebetweenlands.common.handler.CustomEntityCollisionsHandler;
 import thebetweenlands.common.handler.ElixirCommonHandler;
-import thebetweenlands.common.handler.EntitySpawnHandler;
 import thebetweenlands.common.handler.EntityUnmountHandler;
+import thebetweenlands.common.handler.EntitySpawnHandler;
 import thebetweenlands.common.handler.EnvironmentEventHandler;
 import thebetweenlands.common.handler.EnvironmentEventOverridesHandler;
 import thebetweenlands.common.handler.FoodSicknessHandler;
@@ -64,7 +61,6 @@ import thebetweenlands.common.handler.PlayerDecayHandler;
 import thebetweenlands.common.handler.PlayerJoinWorldHandler;
 import thebetweenlands.common.handler.PlayerPortalHandler;
 import thebetweenlands.common.handler.PlayerRespawnHandler;
-import thebetweenlands.common.handler.PlayerRuneChainHandler;
 import thebetweenlands.common.handler.PuppetHandler;
 import thebetweenlands.common.handler.WorldEventHandler;
 import thebetweenlands.common.herblore.elixir.ElixirEffectRegistry;
@@ -87,7 +83,6 @@ import thebetweenlands.common.registries.MessageRegistry;
 import thebetweenlands.common.registries.RecipeRegistry;
 import thebetweenlands.common.registries.Registries;
 import thebetweenlands.common.registries.SoundRegistry;
-import thebetweenlands.common.tile.TileEntitySimulacrum;
 import thebetweenlands.common.world.WorldProviderBetweenlands;
 import thebetweenlands.common.world.biome.spawning.WorldMobSpawner;
 import thebetweenlands.common.world.gen.feature.structure.WorldGenDruidCircle;
@@ -95,6 +90,7 @@ import thebetweenlands.common.world.gen.feature.structure.WorldGenWaystone;
 import thebetweenlands.common.world.storage.BetweenlandsChunkStorage;
 import thebetweenlands.common.world.storage.OfflinePlayerHandlerImpl;
 import thebetweenlands.common.world.storage.WorldStorageImpl;
+import thebetweenlands.compat.hwyla.HwylaProvider;
 import thebetweenlands.compat.tmg.TMGEquipmentInventory;
 import thebetweenlands.core.TheBetweenlandsPreconditions;
 
@@ -271,16 +267,11 @@ public class TheBetweenlands {
 		MinecraftForge.EVENT_BUS.register(OfflinePlayerHandlerImpl.class);
 		MinecraftForge.EVENT_BUS.register(ItemRingOfGathering.class);
 		MinecraftForge.EVENT_BUS.register(EntityVolarkite.class);
-		MinecraftForge.EVENT_BUS.register(PlayerRuneChainHandler.class);
 		MinecraftForge.EVENT_BUS.register(BLDataFixers.class);
 		MinecraftForge.EVENT_BUS.register(EntityDraeton.class);
 		MinecraftForge.EVENT_BUS.register(PlayerMountsEntityCapability.class);
 		MinecraftForge.EVENT_BUS.register(EntityChiromawMatriarch.class);
 		MinecraftForge.EVENT_BUS.register(ItemAncientArmor.class);
 		MinecraftForge.EVENT_BUS.register(EntityUnmountHandler.class);
-		MinecraftForge.EVENT_BUS.register(LastKilledCapability.class);
-		MinecraftForge.EVENT_BUS.register(TileEntitySimulacrum.class);
-		MinecraftForge.EVENT_BUS.register(BlessingEntityCapability.class);
-		MinecraftForge.EVENT_BUS.register(SwarmedCapability.class);
 	}
 }

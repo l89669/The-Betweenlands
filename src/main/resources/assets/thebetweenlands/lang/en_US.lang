@@ -292,7 +292,6 @@ tile.thebetweenlands.syrmorite_rubber_tap.name=Syrmorite Rubber Tap
 tile.thebetweenlands.weedwood_rubber_tap.name=Weedwood Rubber Tap
 tile.thebetweenlands.weedwood_chest.name=Weedwood Chest
 tile.thebetweenlands.sulfur_torch.name=Sulfur Torch
-tile.thebetweenlands.sulfur_torch_extinguished.name=Extinguished Sulfur Torch
 tile.thebetweenlands.weedwood_trapdoor.name=Weedwood Trapdoor
 tile.thebetweenlands.rubber_tree_plank_trapdoor.name=Rubber Tree Plank Trapdoor
 tile.thebetweenlands.syrmorite_trapdoor.name=Syrmorite Trapdoor
@@ -473,26 +472,6 @@ tile.thebetweenlands.rotten_plank_fence_gate.name=Rotten Plank Fence Gate
 tile.thebetweenlands.censer.name=Censer
 tile.thebetweenlands.weedwood_barrel.name=Weedwood Barrel
 tile.thebetweenlands.syrmorite_barrel.name=Syrmorite Barrel
-tile.thebetweenlands.simulacrum_lake_cavern.1.name=Lake Cavern Simulacrum
-tile.thebetweenlands.simulacrum_lake_cavern.2.name=Lake Cavern Simulacrum
-tile.thebetweenlands.simulacrum_lake_cavern.3.name=Lake Cavern Simulacrum
-tile.thebetweenlands.simulacrum_deepman.1.name=Deepman Simulacrum
-tile.thebetweenlands.simulacrum_deepman.2.name=Deepman Simulacrum
-tile.thebetweenlands.simulacrum_deepman.3.name=Deepman Simulacrum
-tile.thebetweenlands.simulacrum_rootman.1.name=Rootman Simulacrum
-tile.thebetweenlands.simulacrum_rootman.2.name=Rootman Simulacrum
-tile.thebetweenlands.simulacrum_rootman.3.name=Rootman Simulacrum
-tile.thebetweenlands.offering_table.name=Offering Table
-tile.thebetweenlands.wind_chime.name=Wind Chime
-tile.thebetweenlands.lantern_paper_1.name=Blank Amate Paper Lantern
-tile.thebetweenlands.lantern_paper_2.name=Checkered Amate Paper Lantern
-tile.thebetweenlands.lantern_paper_3.name=Framed Amate Paper Lantern
-tile.thebetweenlands.lantern_silt_glass.name=Silt Glass Lantern
-tile.thebetweenlands.bauble.name=Bauble
-tile.thebetweenlands.rune_weaving_table.name=Rune Weaving Table
-tile.thebetweenlands.rune_carving_table.name=Rune Carving Table
-tile.thebetweenlands.scrivener_sulfur_mark.name=Scrivener's Sulfur Mark
-tile.thebetweenlands.scrivener_burnt_mark.name=Scrivener's Burnt Mark
 tile.thebetweenlands.fishing_tackle_box.name=Fishing Tackle Box
 tile.thebetweenlands.fishing_tackle_box.name=Fishing Tackle Box
 tile.thebetweenlands.smoking_rack.name=Smoking Rack
@@ -808,7 +787,6 @@ item.thebetweenlands.chiromaw_egg.name=Chiromaw Hatchling
 item.thebetweenlands.chiromaw_egg_lightning.name=Lightning Chiromaw Hatchling
 item.thebetweenlands.net.name=Net
 item.thebetweenlands.life_crystal.name=Life Crystal
-item.thebetweenlands.life_crystal_fragment.name=Life Crystal Fragment
 item.thebetweenlands.green_middle_gem.name=Green Middle Gem
 item.thebetweenlands.aqua_middle_gem.name=Aqua Middle Gem
 item.thebetweenlands.crimson_middle_gem.name=Crimson Middle Gem
@@ -905,24 +883,6 @@ item.thebetweenlands.ancient_leggings.name=Ancient Leggings
 item.thebetweenlands.fish_bait.name=Fish Bait
 item.thebetweenlands.fishing_spear.name=Fishing Spear
 item.thebetweenlands.weedwood_fishing_rod.name=Weedwood Fishing Rod
-
-item.thebetweenlands.rune_chain.name=Rune Chain
-item.thebetweenlands.scrivener_tool.name=Scrivener's Tool
-item.thebetweenlands.weedwood_runelet.name=Weedwood Runelet
-item.thebetweenlands.pitstone_runelet.name=Pitstone Runelet
-item.thebetweenlands.dentrothyst_orange_runelet.name=Orange Dentrothyst Runelet
-item.thebetweenlands.dentrothyst_green_runelet.name=Green Dentrothyst Runelet
-item.thebetweenlands.bone_runelet.name=Bone Runelet
-item.thebetweenlands.ancient_runelet.name=Ancient Runelet
-item.thebetweenlands.unknown_rune.name=Unknown Rune
-item.thebetweenlands.initiate_rune.carved.name=Initiate Rune
-item.thebetweenlands.token_rune.carved.name=Token Rune
-item.thebetweenlands.gating_rune.carved.name=Gating Rune
-item.thebetweenlands.conduct_rune.carved.name=Conduct Rune
-item.thebetweenlands.initiate_rune.infused.name=Initiate Rune - %1$s
-item.thebetweenlands.token_rune.infused.name=Token Rune - %1$s
-item.thebetweenlands.gating_rune.infused.name=Gating Rune - %1$s
-item.thebetweenlands.conduct_rune.infused.name=Conduct Rune - %1$s
 
 # Herblore
 item.thebetweenlands.elixir.dentrothyst_vial.green.name=Green Dentrothyst Vial
@@ -1148,20 +1108,6 @@ tooltip.bl.censer.effect.aspect=Infuses Aspectrus crops with\nthe aspect and ena
 tooltip.bl.censer.effect.cremains=Incinerates any living creature\nin a small area and turns them\ninto cremains.
 tooltip.bl.censer.effect.swamp_water=Spreads steam in a large area\nthat carries the effect of the item it\nis imbued with.\nCan be imbued with a Bark Amulet.
 
-tooltip.bl.simulacrum.effect=Effect: %s
-tooltip.bl.simulacrum.effect.none=None
-tooltip.bl.simulacrum.effect.random=Random
-tooltip.bl.simulacrum.effect.them=Them
-tooltip.bl.simulacrum.effect.imitation=Imitation
-tooltip.bl.simulacrum.effect.weakness=Weakness
-tooltip.bl.simulacrum.effect.resurrection=Resurrection
-tooltip.bl.simulacrum.effect.sanctuary=Sanctuary
-tooltip.bl.simulacrum.effect.fertility=Fertility
-tooltip.bl.simulacrum.effect.attraction=Attraction
-tooltip.bl.simulacrum.effect.wisp=Wisp
-tooltip.bl.simulacrum.effect.wisdom=Wisdom
-tooltip.bl.simulacrum.effect.blessing=Blessing
-
 tooltip.bl.recipes.used_in=§5Used in: §7%s
 tooltip.bl.recipes.compost_bin=Compost Bin
 tooltip.bl.recipes.static_aspects=Gecko Cage
@@ -1171,21 +1117,6 @@ tooltip.bl.recipes.censer_primary=Censer
 tooltip.bl.recipes.censer_secondary=Censer (secondary)
 tooltip.bl.recipes.purifier=Purifier
 tooltip.bl.recipes.mortar=Mortar
-
-tooltip.thebetweenlands.initiate_rune.carved=Material: %1$s
-tooltip.thebetweenlands.initiate_rune.infused=Material: %1$s\nAspect: %2$s\nTier: %3$s\nEffect: %4$s
-tooltip.thebetweenlands.token_rune.carved=Material: %1$s
-tooltip.thebetweenlands.token_rune.infused=Material: %1$s\nAspect: %2$s\nTier: %3$s\nEffect: %4$s
-tooltip.thebetweenlands.gating_rune.carved=Material: %1$s
-tooltip.thebetweenlands.gating_rune.infused=Material: %1$s\nAspect: %2$s\nTier: %3$s\nEffect: %4$s
-tooltip.thebetweenlands.conduct_rune.carved=Material: %1$s
-tooltip.thebetweenlands.conduct_rune.infused=Material: %1$s\nAspect: %2$s\nTier: %3$s\nEffect: %4$s
-
-tooltip.thebetweenlands.rune.gating_block.unbound=Unbound
-tooltip.thebetweenlands.rune.gating_block.bound=Bound block: %s
-
-tooltip.thebetweenlands.rune.token_item.unbound=Unbound
-tooltip.thebetweenlands.rune.token_item.bound=Bound item: %s
 
 tooltip.bl.fish_bait.saturation=Saturation: %s
 tooltip.bl.fish_bait.sink_speed=Sinking Speed: %s
@@ -1302,8 +1233,6 @@ chat.equipment.equipped=Equipped %s
 chat.equipment.unequipped=Unequipped %s
 
 chat.waystone.obstructed=Menhir is obstructed
-chat.simulacrum.obstructed=Simulacrum is obstructed
-chat.simulacrum.blessed=You feel blessed
 
 chat.dungeon_door_runes.locked=Dungeon door code set!
 
@@ -1324,13 +1253,6 @@ chat.chiromaw_tame.obstructed=You can't unmount your Chiromaw here
 chat.chiromaw_matriarch_nest.tainted=The scent of you has tainted this nest forever - Chiromaws will no longer abide here
 
 chat.draeton_dismount_timer=Dismounting in %s...
-
-chat.simulacrum.changed_effect=Changed effect to '%s'
-
-chat.pattern_rune_set_origin=Set the origin first by sneaking
-
-chat.wind_chime.changed_attunement=Attuned to '%s'
-chat.wind_chime.removed_attunement=Attuned to any event
 
 # Damage Source
 death.attack.suffocation=%s was suffocated by a Shallowbreath
@@ -1394,8 +1316,6 @@ bl.elixir.duration.n=%s
 
 bl.potion.rootBound=Root Bound
 bl.potion.enlightened=Enlightened
-
-bl.effect.blessed=Blessed
 
 # Entities
 entity.thebetweenlands.dark_druid.name=Dark Druid
@@ -1502,8 +1422,6 @@ entity.thebetweenlands.draeton_leakage.name=Draeton Leakage
 entity.thebetweenlands.draeton_upgrade_anchor.name=Draeton Anchor
 entity.thebetweenlands.draeton_upgrade_furnace.name=Draeton Furnace
 entity.thebetweenlands.draeton_upgrade_crafting.name=Draeton Crafting
-entity.thebetweenlands.stalker.name=Stalker
-entity.thebetweenlands.swarm.name=Infestation
 entity.thebetweenlands.anadia.name=Anadia
 entity.thebetweenlands.fish_bait_item.name=Fish Bait
 
@@ -1549,18 +1467,6 @@ sign.fortress.line1=Only The
 sign.fortress.line2=Sword Keeper
 sign.fortress.line3=May Pass
 sign.fortress.line4=This Point
-
-
-# Events
-event.thebetweenlands.dense_fog.name=Dense Fog
-event.thebetweenlands.heavy_rain.name=Heavy Rain
-event.thebetweenlands.auroras.name=Auroras
-event.thebetweenlands.blood_sky.name=Blood Sky
-event.thebetweenlands.spook.name=Spook
-event.thebetweenlands.winter.name=Winter
-event.thebetweenlands.snowfall.name=Snowfall
-event.thebetweenlands.thunderstorm.name=Thunderstorm
-event.thebetweenlands.rift.name=Rift
 
 
 # JEI
@@ -1787,119 +1693,6 @@ gui.bl.draeton.main.upgrade_anchor=Anchor upgrade slot:\n§7 - Draeton Anchor Up
 
 gui.bl.fish_trimming_table.butcher=Chop!
 
-# Runes
-rune.token.unknown=Rune Token
-
-rune.token.thebetweenlands.any.singular=Any Token
-rune.token.thebetweenlands.any.plural=Any Tokens
-rune.token.thebetweenlands.block.singular=Block Token
-rune.token.thebetweenlands.block.plural=Block Tokens
-rune.token.thebetweenlands.entity.singular=Entity Token
-rune.token.thebetweenlands.entity.plural=Entity Tokens
-rune.token.thebetweenlands.position.singular=Position Token
-rune.token.thebetweenlands.position.plural=Position Tokens
-rune.token.thebetweenlands.direction.singular=Direction Token
-rune.token.thebetweenlands.direction.plural=Direction Tokens
-
-rune.input=Input
-rune.output=Output
-
-rune.gui.inputs=In:
-rune.gui.outputs=Out:
-
-rune_tier.tier_1.name=I
-rune_tier.tier_2.name=II
-rune_tier.tier_3.name=III
-
-rune_material.thebetweenlands.weedwood.name=Weedwood
-rune_material.thebetweenlands.pitstone.name=Pitstone
-rune_material.thebetweenlands.dentrothyst_green.name=Green Dentrothyst
-rune_material.thebetweenlands.dentrothyst_orange.name=Orange Dentrothyst
-rune_material.thebetweenlands.bone.name=Bone
-rune_material.thebetweenlands.ancient.name=Ancient
-
-rune.thebetweenlands.no_effect.name=No effect
-
-rune.thebetweenlands.initiate_water.name=Water
-rune.thebetweenlands.initiate_water.configuration.0.title=<underline>Water</underline>
-rune.thebetweenlands.initiate_water.configuration.0.description=Activates when entering water
-
-rune.item.thebetweenlands.test_rune_fire.configuration.0.title=<underline>Block Fire</underline>
-rune.item.thebetweenlands.test_rune_fire.configuration.0.description=Sets the marked block on fire
-rune.item.thebetweenlands.test_rune_fire.configuration.0.input.0.description=Block to set on fire
-
-rune.item.thebetweenlands.test_rune_fire.configuration.1.title=<underline>Mob Fire</underline>
-rune.item.thebetweenlands.test_rune_fire.configuration.1.description=Sets the marked mob on fire
-rune.item.thebetweenlands.test_rune_fire.configuration.1.input.0.description=Mob to set on fire
-
-rune.item.thebetweenlands.test_rune_destroy_block.configuration.0.title=<underline>Destroy Block</underline>
-rune.item.thebetweenlands.test_rune_destroy_block.configuration.0.description=Destroys the marked block
-rune.item.thebetweenlands.test_rune_destroy_block.configuration.0.input.0.description=Block to destroy
-
-rune.item.thebetweenlands.test_rune_mark_area.configuration.0.title=<underline>Mark Area</underline>
-rune.item.thebetweenlands.test_rune_mark_area.configuration.0.description=Marks block area around the rune chain user
-rune.item.thebetweenlands.test_rune_mark_area.configuration.0.output.0.description=Blocks in area around rune chain user
-
-rune.item.thebetweenlands.test_rune_mark_area.configuration.1.title=<underline>Mark Area</underline>
-rune.item.thebetweenlands.test_rune_mark_area.configuration.1.description=Marks block area around a marked center block
-rune.item.thebetweenlands.test_rune_mark_area.configuration.1.input.0.description=Center block
-rune.item.thebetweenlands.test_rune_mark_area.configuration.1.output.0.description=Blocks in the area around center block
-
-rune.item.thebetweenlands.test_rune_select_grass.configuration.0.title=<underline>Select Grass</underline>
-rune.item.thebetweenlands.test_rune_select_grass.configuration.0.description=Only allows the block mark if the block is grass. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-rune.item.thebetweenlands.test_rune_select_grass.configuration.0.input.0.description=Block to filter
-
-rune.item.thebetweenlands.test_rune_projectile.configuration.0.title=<underline>Projectile</underline>
-rune.item.thebetweenlands.test_rune_projectile.configuration.0.description=Shoots a projectile from a marked entity in the direction it is looking
-rune.item.thebetweenlands.test_rune_projectile.configuration.0.input.0.description=Entity to shoot the projectile from
-rune.item.thebetweenlands.test_rune_projectile.configuration.0.output.0.description=Block that is hit by the projectile
-
-rune.item.thebetweenlands.test_rune_projectile.configuration.1.title=<underline>Projectile</underline>
-rune.item.thebetweenlands.test_rune_projectile.configuration.1.description=Shoots a projectile from a marked entity in the direction of a marked ray
-rune.item.thebetweenlands.test_rune_projectile.configuration.1.input.0.description=Entity to shoot the projectile from
-rune.item.thebetweenlands.test_rune_projectile.configuration.1.input.1.description=Direction of the projectile
-rune.item.thebetweenlands.test_rune_projectile.configuration.1.output.0.description=Block that is hit by the projectile
-
-rune.item.thebetweenlands.test_rune_projectile.configuration.2.title=<underline>Projectile</underline>
-rune.item.thebetweenlands.test_rune_projectile.configuration.2.description=Shoots a projectile from a marked position in the direction of a marked ray
-rune.item.thebetweenlands.test_rune_projectile.configuration.2.input.0.description=Position to shoot the projectile from
-rune.item.thebetweenlands.test_rune_projectile.configuration.2.input.1.description=Direction of the projectile
-rune.item.thebetweenlands.test_rune_projectile.configuration.2.output.0.description=Block that is hit by the projectile
-
-rune.item.thebetweenlands.test_rune_self.configuration.0.title=<underline>Self</underline>
-rune.item.thebetweenlands.test_rune_self.configuration.0.description=Marks the rune chain user
-rune.item.thebetweenlands.test_rune_self.configuration.0.output.0.description=Rune chain user
-
-rune.item.thebetweenlands.test_rune_pinpoint.configuration.0.title=<underline>Pinpoint</underline>
-rune.item.thebetweenlands.test_rune_pinpoint.configuration.0.description=Pinpoints a marked entity
-rune.item.thebetweenlands.test_rune_pinpoint.configuration.0.input.0.description=Entity to pinpoint
-rune.item.thebetweenlands.test_rune_pinpoint.configuration.0.output.0.description=Position of the entity
-rune.item.thebetweenlands.test_rune_pinpoint.configuration.0.output.1.description=Eye position of the entity
-rune.item.thebetweenlands.test_rune_pinpoint.configuration.0.output.2.description=Look direction of the entity
-
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.0.title=<underline>Mark Nearby</underline>
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.0.description=Marks nearby entities
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.0.output.0.description=Entities that are near the rune chain user
-
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.1.title=<underline>Mark Nearby</underline>
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.1.description=Marks entities that are near a marked block
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.1.input.0.description=Center block
-rune.item.thebetweenlands.test_rune_mark_nearby.configuration.1.output.0.description=Entities that are near a marked block
-
-rune.item.thebetweenlands.test_rune_branching.configuration.0.title=<underline>Branch</underline>
-rune.item.thebetweenlands.test_rune_branching.configuration.0.description=Branches the rune chain flow for the linked input token
-rune.item.thebetweenlands.test_rune_branching.configuration.0.input.0.description=Input token to branch on
-rune.item.thebetweenlands.test_rune_branching.configuration.1.title=<underline>Branch</underline>
-rune.item.thebetweenlands.test_rune_branching.configuration.1.description=Branches the rune chain flow for the linked input tokens
-rune.item.thebetweenlands.test_rune_branching.configuration.1.input.0.description=First input token to branch on
-rune.item.thebetweenlands.test_rune_branching.configuration.1.input.1.description=Second input token to branch on
-rune.item.thebetweenlands.test_rune_branching.configuration.2.title=<underline>Branch</underline>
-rune.item.thebetweenlands.test_rune_branching.configuration.2.description=Branches the rune chain flow for the linked input tokens
-rune.item.thebetweenlands.test_rune_branching.configuration.2.input.0.description=Firs token to branch on
-rune.item.thebetweenlands.test_rune_branching.configuration.2.input.1.description=Second token to branch on
-rune.item.thebetweenlands.test_rune_branching.configuration.2.input.2.description=Third token to branch on
-
-
 # Advancements
 
 # Adventures
@@ -1953,10 +1746,6 @@ advancements.thebetweenlands.adventurer.king_of_the_hill.title=King of the Hill
 advancements.thebetweenlands.adventurer.king_of_the_hill.description=Claim a Chiromaw Matriarch Nest
 advancements.thebetweenlands.adventurer.queen_of_the_hill.title=Queen of the Hill
 advancements.thebetweenlands.adventurer.queen_of_the_hill.description=Raid a Chiromaw Matriarch Nest without claiming it
-advancements.thebetweenlands.adventurer.gambling_addict.title=Gambling Addict
-advancements.thebetweenlands.adventurer.gambling_addict.description=Animate way too many Item Scrolls
-advancements.thebetweenlands.adventurer.thunderstruck.title=Thunderstruck!
-advancements.thebetweenlands.adventurer.thunderstruck.description=Fly into lightning while using a Volarkite or riding a Draeton
 
 # Fighter
 advancements.thebetweenlands.fighter.root.title=Fighter
@@ -2063,8 +1852,6 @@ advancements.thebetweenlands.survivalist.hardware_laundry.title=Hardware Laundry
 advancements.thebetweenlands.survivalist.hardware_laundry.description=Purify your tools
 advancements.thebetweenlands.survivalist.onions_have_layers.title=Onions Have Layers, Tools Alike
 advancements.thebetweenlands.survivalist.onions_have_layers.description=Coat your tools against corrosion
-advancements.thebetweenlands.survivalist.hashtag_blessed.title=#Blessed
-advancements.thebetweenlands.survivalist.hashtag_blessed.description=Get saved by the Blessed effect from a Simulacrum
 
 # Craftsman
 advancements.thebetweenlands.craftsman.root.title=Craftsman
@@ -2077,8 +1864,6 @@ advancements.thebetweenlands.craftsman.efficiency.title=Efficiency
 advancements.thebetweenlands.craftsman.efficiency.description=Create a Dual Sulfur Furnace
 advancements.thebetweenlands.craftsman.freebies.title=Freebies
 advancements.thebetweenlands.craftsman.freebies.description=Obtain extra ingots using Limestone Flux
-advancements.thebetweenlands.craftsman.feel_it_coming.title=In the Air Tonight
-advancements.thebetweenlands.craftsman.feel_it_coming.description=Predict a weather event with windchimes
 
 # Miner
 advancements.thebetweenlands.miner.root.title=Miner
@@ -2204,7 +1989,6 @@ config.thebetweenlands.dump_packed_textures=Dump packed textures
 # Damage sources
 death.attack.bl.shockwave=%1$s was killed by a shockwave
 death.attack.bl.spikewave=%1$s was impaled by roots
-death.attack.bl.swarm=%1$s was decomposed by infestation
 
 #Dev thing
 item.thebetweenlands.test_item_chimp_ruler.name=Test Ruler

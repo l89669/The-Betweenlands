@@ -1,7 +1,5 @@
 package thebetweenlands.common.network.clientbound;
 
-import java.io.IOException;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -32,7 +30,7 @@ public class MessageLivingWeedwoodShieldSpit extends MessageEntity {
 	}
 
 	@Override
-	public void deserialize(PacketBuffer buf) throws IOException {
+	public void deserialize(PacketBuffer buf) {
 		super.deserialize(buf);
 
 		this.mainhand = buf.readBoolean();

@@ -50,8 +50,6 @@ public class BlockRope extends Block implements ICustomItemBlock {
 
 	@Override 
 	public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) { 
-		entity.onGround = true;
-		entity.fallDistance = 0;
 		return true; 
 	}
 

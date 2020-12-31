@@ -78,10 +78,6 @@ public class RenderFirefly extends RenderLiving<EntityFirefly> {
 	}
 
 	public static void renderFireflyGlow(double x, double y, double z, double scale) {
-		renderFireflyGlow(x, y, z, scale, 0.4f, 0.2f, 0.0f, 0.3f, true, 10);
-	}
-	
-	public static void renderFireflyGlow(double x, double y, double z, double scale, float red, float green, float blue, float alpha, boolean flicker, int count) {
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder buffer = tessellator.getBuffer();
 
@@ -102,13 +98,18 @@ public class RenderFirefly extends RenderLiving<EntityFirefly> {
 		float ryz = ActiveRenderInfo.getRotationYZ();
 		float rxy = ActiveRenderInfo.getRotationXY();
 
-		if (flicker && RANDOM.nextInt(10) <= 2) {
+		float red = 0.4F;
+		float green = 0.2F;
+		float blue = 0.0F;
+		float alpha = 0.3F;
+
+		if (RANDOM.nextInt(10) <= 2) {
 			red = 0.4F + RANDOM.nextFloat() * 0.3F;
 		}
 
 		double currentScale = scale;
 
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < 10; i++) {
 			currentScale -= scale * 0.15D;
 			buffer.pos(x - rx * currentScale - ryz * currentScale, y - rxz * currentScale, z - rz * currentScale - rxy * currentScale).tex(0.0, 1.0).color(red, green, blue, alpha).endVertex();
 			buffer.pos(x - rx * currentScale + ryz * currentScale, y + rxz * currentScale, z - rz * currentScale + rxy * currentScale).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
@@ -121,7 +122,7 @@ public class RenderFirefly extends RenderLiving<EntityFirefly> {
 		blue = 0.6F;
 
 		currentScale = scale / 4.0D;
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < 10; i++) {
 			currentScale -= scale * 0.15D / 4.0D;
 			buffer.pos(x - rx * currentScale - ryz * currentScale, y - rxz * currentScale, z - rz * currentScale - rxy * currentScale).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
 			buffer.pos(x - rx * currentScale + ryz * currentScale, y + rxz * currentScale, z - rz * currentScale + rxy * currentScale).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
@@ -131,7 +132,7 @@ public class RenderFirefly extends RenderLiving<EntityFirefly> {
 
 		tessellator.draw();
 
-		GlStateManager.depthMask(true);
+		GlStateManager.depthMask(false);
 		GlStateManager.popMatrix();
 
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

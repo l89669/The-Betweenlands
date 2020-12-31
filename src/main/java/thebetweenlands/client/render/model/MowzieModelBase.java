@@ -6,21 +6,19 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.lang.reflect.Field;
-import java.util.LinkedList;
-import java.util.List;
-
 @SideOnly(Side.CLIENT)
 public class MowzieModelBase extends ModelBase {
+    /**
+     * Store every MowzieModelRenderer in this array
+     */
+    protected MowzieModelRenderer[] parts;
+
     /**
      * Saves the initial rotate angles and initial rotation points.
      * Note: Call this at the end of the constructor.
      */
     protected void setInitPose() {
-        this.boxList.stream().filter(modelRenderer -> modelRenderer instanceof MowzieModelRenderer).forEach(modelRenderer -> {
-            MowzieModelRenderer mowzieModelRenderer = (MowzieModelRenderer) modelRenderer;
-            mowzieModelRenderer.setInitValuesToCurrentPose();
-        });
+        for (MowzieModelRenderer part : parts) part.setInitValuesToCurrentPose();
     }
 
     /**
@@ -28,10 +26,7 @@ public class MowzieModelBase extends ModelBase {
      * Note: Call this at the beginning of setRotationAngles.
      */
     public void setToInitPose() {
-        this.boxList.stream().filter(modelRenderer -> modelRenderer instanceof MowzieModelRenderer).forEach(modelRenderer -> {
-            MowzieModelRenderer mowzieModelRenderer = (MowzieModelRenderer) modelRenderer;
-            mowzieModelRenderer.setCurrentPoseToInitValues();
-        });
+        for (MowzieModelRenderer part : parts) part.setCurrentPoseToInitValues();
     }
 
     /**

@@ -2,6 +2,7 @@ package thebetweenlands.client.render.model.entity;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -9,7 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import thebetweenlands.client.render.model.MowzieModelBase;
 import thebetweenlands.client.render.model.MowzieModelRenderer;
 import thebetweenlands.common.entity.mobs.EntitySludge;
-import thebetweenlands.common.world.event.EventSpoopy;
 
 /**
  * ModelSmollSludge - TripleHeadedSheep
@@ -52,6 +52,7 @@ public class ModelSmollSludge extends MowzieModelBase {
         this.skullbase.addChild(this.skull2);
         this.skull2.addChild(this.jaw);
         
+        parts = new MowzieModelRenderer[]{skullbase, sludge1, skull2, jaw, sludge2, sludge3};
 		setInitPose();
     }
 
@@ -59,8 +60,7 @@ public class ModelSmollSludge extends MowzieModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
         GlStateManager.pushMatrix();
 		GlStateManager.scale(scale, scale, scale);
-		if(!EventSpoopy.isSpoooopy(entity.world))
-			skullbase.render(f5);
+		this.skullbase.render(f5);
 		GlStateManager.enableBlend();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		this.sludge1.render(f5);

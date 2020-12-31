@@ -27,11 +27,10 @@ public class TileEntityRepeller extends TileEntity implements ITickable {
 	private static final float MAX_RADIUS = 18.0F;
 	private static final int DEPLOY_TIME = 80;
 
-	protected boolean hasShimmerstone = false;
-	protected int fuel = 0;
-	protected boolean running = false;
-	
+	private boolean hasShimmerstone = false;
+	private int fuel = 0;
 	private boolean prevRunning = false;
+	private boolean running = false;
 	private float lastRadius = 0.0F;
 	private float radius = 0.0F;
 	private int deployTicks = 0;
@@ -47,10 +46,6 @@ public class TileEntityRepeller extends TileEntity implements ITickable {
 		this.markDirty();
 		IBlockState blockState = this.world.getBlockState(this.pos);
 		this.world.notifyBlockUpdate(this.pos, blockState, blockState, 3);
-	}
-	
-	public int getRadiusState() {
-		return this.radiusState;
 	}
 
 	public void cycleRadiusState() {

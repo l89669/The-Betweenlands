@@ -11,7 +11,6 @@ import com.google.common.base.Predicates;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -91,9 +90,6 @@ public class ExtendedReachHandler {
 
                     if (mc.gameSettings.attackIndicator == 1 && !(mc.gameSettings.showDebugInfo && !mc.gameSettings.hideGUI && !mc.player.hasReducedDebug() && !mc.gameSettings.reducedDebugInfo)) {
                         GuiIngame gui = mc.ingameGUI;
-
-                        mc.getTextureManager().bindTexture(Gui.ICONS);
-                        
                         float f = mc.player.getCooledAttackStrength(0.0F);
                         boolean flag = false;
 

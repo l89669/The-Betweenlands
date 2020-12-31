@@ -1,7 +1,5 @@
 package thebetweenlands.client.render.model;
 
-import net.minecraft.client.model.ModelRenderer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -21,8 +19,8 @@ public class AnimationBlender<T extends MowzieModelBase> {
 
 		private void update(AnimationBlender<T> blender, T model, boolean reset) {
 			if(reset) {
-				for(int i = 0; i < model.boxList.size(); i++) {
-					ModelRenderer part = model.boxList.get(i);
+				for(int i = 0; i < model.parts.length; i++) {
+					MowzieModelRenderer part = model.parts[i];
 					part.rotateAngleX = Float.NaN;
 					part.rotateAngleY = Float.NaN;
 					part.rotateAngleZ = Float.NaN;
@@ -31,8 +29,8 @@ public class AnimationBlender<T extends MowzieModelBase> {
 
 			this.animator.accept(model);
 
-			for(int i = 0; i < model.boxList.size(); i++) {
-				ModelRenderer part = model.boxList.get(i);
+			for(int i = 0; i < model.parts.length; i++) {
+				MowzieModelRenderer part = model.parts[i];
 
 				if(Float.isFinite(part.rotateAngleX)) {
 					blender.rotX[i] += this.currentWeight * part.rotateAngleX;
@@ -61,9 +59,9 @@ public class AnimationBlender<T extends MowzieModelBase> {
 	public AnimationBlender(T model) {
 		this.model = model;
 		this.states.add(this.baseState = new State(m -> {}, () -> 1.0f));
-		this.rotX = new float[this.model.boxList.size()];
-		this.rotY = new float[this.model.boxList.size()];
-		this.rotZ = new float[this.model.boxList.size()];
+		this.rotX = new float[this.model.parts.length];
+		this.rotY = new float[this.model.parts.length];
+		this.rotZ = new float[this.model.parts.length];
 	}
 
 	/**
@@ -80,7 +78,7 @@ public class AnimationBlender<T extends MowzieModelBase> {
 	 * @param useExistingAngles Whether currently already existing rotations should be added. If false all rotations are initialised with 0.
 	 */
 	public void setAngles(boolean useExistingAngles) {
-		for(int i = 0; i < this.model.boxList.size(); i++) {
+		for(int i = 0; i < this.model.parts.length; i++) {
 			this.rotX[i] = this.rotY[i] = this.rotZ[i] = 0;
 		}
 
@@ -91,8 +89,8 @@ public class AnimationBlender<T extends MowzieModelBase> {
 			}
 		}
 
-		for(int i = 0; i < this.model.boxList.size(); i++) {
-			ModelRenderer part = model.boxList.get(i);
+		for(int i = 0; i < this.model.parts.length; i++) {
+			MowzieModelRenderer part = model.parts[i];
 
 			part.rotateAngleX = this.rotX[i];
 			part.rotateAngleY = this.rotY[i];

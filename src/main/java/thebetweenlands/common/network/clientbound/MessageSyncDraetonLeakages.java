@@ -1,6 +1,5 @@
 package thebetweenlands.common.network.clientbound;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class MessageSyncDraetonLeakages extends MessageEntity {
 	}
 
 	@Override
-	public void deserialize(PacketBuffer buf) throws IOException {
+	public void deserialize(PacketBuffer buf) {
 		super.deserialize(buf);
 		deserialize(this.leakages, buf);
 	}

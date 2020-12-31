@@ -1,7 +1,5 @@
 package thebetweenlands.common.network.serverbound;
 
-import java.io.IOException;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
@@ -35,7 +33,7 @@ public class MessageSetDraetonAnchorPos extends MessageEntity {
 	}
 
 	@Override
-	public void deserialize(PacketBuffer buf) throws IOException {
+	public void deserialize(PacketBuffer buf) {
 		super.deserialize(buf);
 		this.pos = buf.readBlockPos();
 	}
