@@ -15,10 +15,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import thebetweenlands.client.render.sky.RiftVariant;
 import thebetweenlands.common.entity.draeton.EntityDraeton;
@@ -41,8 +43,10 @@ import thebetweenlands.common.inventory.container.ContainerItemNaming;
 import thebetweenlands.common.inventory.container.ContainerMortar;
 import thebetweenlands.common.inventory.container.ContainerPouch;
 import thebetweenlands.common.inventory.container.ContainerPurifier;
+import thebetweenlands.common.inventory.container.ContainerRuneCarvingTable;
 import thebetweenlands.common.inventory.container.ContainerSmokingRack;
 import thebetweenlands.common.inventory.container.ContainerWeedwoodWorkbench;
+import thebetweenlands.common.inventory.container.runeweavingtable.ContainerRuneWeavingTable;
 import thebetweenlands.common.item.equipment.ItemLurkerSkinPouch;
 import thebetweenlands.common.tile.TileEntityAnimator;
 import thebetweenlands.common.tile.TileEntityBLDualFurnace;
@@ -54,6 +58,8 @@ import thebetweenlands.common.tile.TileEntityFishTrimmingTable;
 import thebetweenlands.common.tile.TileEntityFishingTackleBox;
 import thebetweenlands.common.tile.TileEntityMortar;
 import thebetweenlands.common.tile.TileEntityPurifier;
+import thebetweenlands.common.tile.TileEntityRuneCarvingTable;
+import thebetweenlands.common.tile.TileEntityRuneWeavingTable;
 import thebetweenlands.common.tile.TileEntitySmokingRack;
 import thebetweenlands.common.tile.TileEntityWeedwoodWorkbench;
 
@@ -78,6 +84,9 @@ public class CommonProxy implements IGuiHandler {
 	public static final int GUI_DRAETON_CRAFTING = 19;
 	public static final int GUI_DRAETON_FURNACE = 20;
 	public static final int GUI_DRAETON_UPGRADES = 21;
+	public static final int GUI_RUNE_WEAVING_TABLE = 22;
+	public static final int GUI_RUNE_CARVING_TABLE = 23;
+
 	public static final int GUI_FISHING_TACKLE_BOX = 30;
 	public static final int GUI_SMOKING_RACK = 31;
 	public static final int GUI_FISH_TRIMMING_TABLE= 32;
@@ -165,6 +174,19 @@ public class CommonProxy implements IGuiHandler {
 			}
 			break;
 
+		case GUI_RUNE_WEAVING_TABLE:
+			if (tile instanceof TileEntityRuneWeavingTable) {
+				return new ContainerRuneWeavingTable(player, (TileEntityRuneWeavingTable) tile);
+			}
+			break;
+			
+
+		case GUI_RUNE_CARVING_TABLE:
+			if (tile instanceof TileEntityRuneCarvingTable) {
+				return new ContainerRuneCarvingTable(player.inventory, (TileEntityRuneCarvingTable) tile, ((TileEntityRuneCarvingTable) tile).isFullGrid());
+			}
+			break;
+			
 		case GUI_DRAETON_POUCH:
 			entity = world.getEntityByID(x);
 			if (entity instanceof EntityDraeton) {
@@ -306,6 +328,10 @@ public class CommonProxy implements IGuiHandler {
     
     @Nullable
     public Proxy getNetProxy() {
+    	MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+    	if(server != null) {
+    		return server.getServerProxy();
+    	}
     	return null;
     }
     
