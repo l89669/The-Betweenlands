@@ -83,7 +83,7 @@ allprojects {
 	apply plugin: 'net.minecraftforge.gradle.forge'
 	
 	minecraft {
-		version = "1.12.2-14.23.5.2773"
+		version = "1.12.2-14.23.5.2847"
 		runDir = 'minecraft'
 		replace '${version}', project.version
 		replace '${mcversion}', project.minecraft.version
