@@ -46,10 +46,10 @@ public final class CustomModelLoader implements ICustomModelLoader {
 			this.type = type;
 			this.extension = extension;
 			this.args = args;
-			if(location != null && location.getPath().startsWith("models/")) {
-				String path = location.getPath();
+			if(location != null && location.getResourcePath().startsWith("models/")) {
+				String path = location.getResourcePath();
 				path = path.substring("models/".length());
-				location = new ResourceLocation(location.getNamespace(), path);
+				location = new ResourceLocation(location.getResourceDomain(), path);
 			}
 			this.actualLocation = location;
 		}
@@ -111,7 +111,7 @@ public final class CustomModelLoader implements ICustomModelLoader {
 	@Override
 	public boolean accepts(ResourceLocation modelLocation) {
 		//Check for loader extensions
-		if(modelLocation.getPath().contains("$")) {
+		if(modelLocation.getResourcePath().contains("$")) {
 			LoaderResult result = this.getLoaderResult(modelLocation);
 			if(result.type != LoaderType.NORMAL) {
 				if(BetweenlandsConfig.DEBUG.debugModelLoader) TheBetweenlands.logger.info(String.format("Accepting model %s (full path: %s) through loader extension %s with args %s", result.actualLocation, modelLocation, result.extension.getName(), result.args));
@@ -122,8 +122,8 @@ public final class CustomModelLoader implements ICustomModelLoader {
 		//Check for registered model providers
 		for(Entry<ResourceLocation, Function<ResourceLocation, IModel>> entry : this.manager.getRegisteredModelProviders().entrySet()) {
 			ResourceLocation registeredModel = entry.getKey();
-			if(registeredModel.getNamespace().equals(modelLocation.getNamespace()) && modelLocation.getPath().startsWith(registeredModel.getPath())) {
-				String suffix = modelLocation.getPath().substring(registeredModel.getPath().length());
+			if(registeredModel.getResourceDomain().equals(modelLocation.getResourceDomain()) && modelLocation.getResourcePath().startsWith(registeredModel.getResourcePath())) {
+				String suffix = modelLocation.getResourcePath().substring(registeredModel.getResourcePath().length());
 
 				//Only accept if path fully matches or is a variant
 				if(suffix.length() == 0 || suffix.startsWith("#")) {
@@ -141,7 +141,7 @@ public final class CustomModelLoader implements ICustomModelLoader {
 		boolean accepted = false;
 
 		//Check for loader extensions
-		if(modelLocation.getPath().contains("$")) {
+		if(modelLocation.getResourcePath().contains("$")) {
 			LoaderResult result = this.getLoaderResult(modelLocation);
 
 			if(result.type == LoaderType.EXTENSION) {
@@ -173,8 +173,8 @@ public final class CustomModelLoader implements ICustomModelLoader {
 			//Check for registered model providers
 			for(Entry<ResourceLocation, Function<ResourceLocation, IModel>> entry : this.manager.getRegisteredModelProviders().entrySet()) {
 				ResourceLocation registeredModel = entry.getKey();
-				if(registeredModel.getNamespace().equals(modelLocation.getNamespace()) && modelLocation.getPath().startsWith(registeredModel.getPath())) {
-					String suffix = modelLocation.getPath().substring(registeredModel.getPath().length());
+				if(registeredModel.getResourceDomain().equals(modelLocation.getResourceDomain()) && modelLocation.getResourcePath().startsWith(registeredModel.getResourcePath())) {
+					String suffix = modelLocation.getResourcePath().substring(registeredModel.getResourcePath().length());
 
 					//Only accept if path fully matches or is a variant
 					if(suffix.length() == 0 || suffix.startsWith("#")) {
@@ -200,7 +200,7 @@ public final class CustomModelLoader implements ICustomModelLoader {
 	 * @return
 	 */
 	private LoaderResult getLoaderResult(ResourceLocation modelLocation) {
-		String fullModelPath = modelLocation.getPath();
+		String fullModelPath = modelLocation.getResourcePath();
 		String modelPath = fullModelPath.substring(0, fullModelPath.indexOf("$"));
 		String suffix = fullModelPath.substring(fullModelPath.indexOf("$"));
 
@@ -225,7 +225,7 @@ public final class CustomModelLoader implements ICustomModelLoader {
 			}
 		}
 
-		ResourceLocation actualLocation = new ResourceLocation(modelLocation.getNamespace(), modelPath + suffix);
+		ResourceLocation actualLocation = new ResourceLocation(modelLocation.getResourceDomain(), modelPath + suffix);
 
 		//Extension loader
 		if(loaderExtension != null) {
@@ -324,7 +324,7 @@ public final class CustomModelLoader implements ICustomModelLoader {
 					IBakedModel bakedModel = modelRegistry.getObject(dependencyLocation);
 
 					if(bakedModel == null) {
-						ResourceLocation dependencyLocationNoVariants = new ResourceLocation(dependencyLocation.getNamespace(), dependencyLocation.getPath());
+						ResourceLocation dependencyLocationNoVariants = new ResourceLocation(dependencyLocation.getResourceDomain(), dependencyLocation.getResourcePath());
 						try {
 							IModel externalModel = ModelLoaderRegistry.getModel(dependencyLocationNoVariants);
 							bakedModel = externalModel.bake(dependant.getModelState(externalModel), dependant.getVertexFormat(externalModel), dependant.getTextureGetter(externalModel));

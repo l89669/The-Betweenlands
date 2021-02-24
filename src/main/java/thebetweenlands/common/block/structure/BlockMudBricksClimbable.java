@@ -90,7 +90,7 @@ public class BlockMudBricksClimbable extends BasicBlock {
 	}
 
 	@Override
-	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         entity.motionX = MathHelper.clamp(entity.motionX, -0.15000000596046448D, 0.15000000596046448D);
         entity.motionZ = MathHelper.clamp(entity.motionZ, -0.15000000596046448D, 0.15000000596046448D);
         entity.fallDistance = 0.0F;
@@ -107,7 +107,7 @@ public class BlockMudBricksClimbable extends BasicBlock {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byIndex(meta); // Using this instead of 'byHorizontalIndex' because the ids don't match and previous was release
+		EnumFacing facing = EnumFacing.getFront(meta); // Using this instead of 'byHorizontalIndex' because the ids don't match and previous was release
 		return getDefaultState().withProperty(FACING, facing.getAxis().isHorizontal() ? facing: EnumFacing.NORTH);
 	}
 

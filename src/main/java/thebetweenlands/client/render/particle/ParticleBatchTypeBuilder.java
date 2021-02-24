@@ -413,7 +413,7 @@ public class ParticleBatchTypeBuilder {
 				byteBuffer.position(0);
 
 				if(vertexCount > 0) {
-					int i = vertexformat.getSize();
+					int i = vertexformat.getNextOffset();
 					List<VertexFormatElement> list = vertexformat.getElements();
 
 					for (int j = 0; j < list.size(); ++j) {

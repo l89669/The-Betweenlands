@@ -34,7 +34,7 @@ public class BlockFallenLeaves extends BlockBush implements IShearable, ISickleH
 		this.setSoundType(SoundType.PLANT);
 		this.setCreativeTab(BLCreativeTabs.PLANTS);
 		this.type = blockName;
-		this.setTranslationKey("thebetweenlands." + type);
+		this.setUnlocalizedName("thebetweenlands." + type);
 	}
 
 	@Override

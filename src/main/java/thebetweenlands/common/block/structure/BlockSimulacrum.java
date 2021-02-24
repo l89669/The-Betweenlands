@@ -80,7 +80,7 @@ public class BlockSimulacrum extends BlockContainer implements IStateMappedBlock
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(VARIANT, Variant.byMetadata(meta)).withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 3));
+		return this.getDefaultState().withProperty(VARIANT, Variant.byMetadata(meta)).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class BlockSimulacrum extends BlockContainer implements IStateMappedBlock
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		int rotation = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D + 2) & 3;
-		state = state.withProperty(FACING, EnumFacing.byHorizontalIndex(rotation));
+		state = state.withProperty(FACING, EnumFacing.getHorizontal(rotation));
 		state = state.withProperty(VARIANT, Variant.byMetadata(stack.getItemDamage()));
 		worldIn.setBlockState(pos, state, 3);
 
@@ -155,7 +155,7 @@ public class BlockSimulacrum extends BlockContainer implements IStateMappedBlock
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

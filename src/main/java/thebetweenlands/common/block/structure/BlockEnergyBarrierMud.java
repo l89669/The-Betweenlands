@@ -24,7 +24,7 @@ public class BlockEnergyBarrierMud extends Block {
 	public BlockEnergyBarrierMud() {
 		super(Material.GLASS);
 		this.setSoundType(SoundType.GLASS);
-		this.setTranslationKey("thebetweenlands.energy_barrier_mud");
+		this.setUnlocalizedName("thebetweenlands.energy_barrier_mud");
 		this.setCreativeTab(BLCreativeTabs.BLOCKS);
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
@@ -39,7 +39,7 @@ public class BlockEnergyBarrierMud extends Block {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
@@ -49,7 +49,7 @@ public class BlockEnergyBarrierMud extends Block {
 	}
 
 	@Override
-    public EnumPushReaction getPushReaction(IBlockState state) {
+    public EnumPushReaction getMobilityFlag(IBlockState state) {
         return EnumPushReaction.BLOCK;
     }
 

@@ -276,7 +276,7 @@ public class EntityWallLamprey extends EntityMovingWallFace implements IMob {
 
 		//Check "below" (relative to facingUp) for entities
 		if((checks & AnchorChecks.ENTITIES) != 0) {
-			if(!this.world.getEntitiesWithinAABB(EntityWallFace.class, this.getEntityBoundingBox().offset(anchor.subtract(this.getAnchor()).offset(facingUp.getOpposite())).expand(facing.getXOffset() * this.getPeek(), facing.getYOffset() * this.getPeek(), facing.getZOffset() * this.getPeek()), e -> e != this).isEmpty()) {
+			if(!this.world.getEntitiesWithinAABB(EntityWallFace.class, this.getEntityBoundingBox().offset(anchor.subtract(this.getAnchor()).offset(facingUp.getOpposite())).expand(facing.getFrontOffsetX() * this.getPeek(), facing.getFrontOffsetY() * this.getPeek(), facing.getFrontOffsetZ() * this.getPeek()), e -> e != this).isEmpty()) {
 				violations |= AnchorChecks.ENTITIES;
 			}
 		}
@@ -369,7 +369,7 @@ public class EntityWallLamprey extends EntityMovingWallFace implements IMob {
 			EnumFacing facing = this.getFacing();
 
 			EntitySludgeWallJet jet = new EntitySludgeWallJet(this.world, this);
-			jet.setPosition(this.posX + facing.getXOffset() * (this.width / 2 + 0.1F), this.posY + this.height / 2.0F + facing.getYOffset() * (this.height / 2 + 0.1F), this.posZ + facing.getZOffset() * (this.width / 2 + 0.1F));
+			jet.setPosition(this.posX + facing.getFrontOffsetX() * (this.width / 2 + 0.1F), this.posY + this.height / 2.0F + facing.getFrontOffsetY() * (this.height / 2 + 0.1F), this.posZ + facing.getFrontOffsetZ() * (this.width / 2 + 0.1F));
 
 			double dx = target.posX - jet.posX;
 			double dy = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - jet.posY;
@@ -466,7 +466,7 @@ public class EntityWallLamprey extends EntityMovingWallFace implements IMob {
 		protected boolean isInRange(EntityLivingBase target) {
 			final Vec3d down = new Vec3d(0, -1, 0);
 			Vec3d dir = target.getPositionVector().subtract(this.entity.getPositionVector()).normalize();
-			return Math.acos(down.dotProduct(dir)) < 0.733D /*~42°*/;
+			return Math.acos(down.dotProduct(dir)) < 0.733D /*~42ï¿½*/;
 		}
 
 		@Override

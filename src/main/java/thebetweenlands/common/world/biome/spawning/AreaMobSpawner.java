@@ -190,7 +190,7 @@ public abstract class AreaMobSpawner {
 
 		@Override
 		public boolean isSaved() {
-			return !"-1".equals(this.id.getPath());
+			return !"-1".equals(this.id.getResourcePath());
 		}
 
 		@Override
@@ -535,7 +535,7 @@ public abstract class AreaMobSpawner {
 						IBlockState spawnBlockState = world.getBlockState(entitySpawnPos);
 
 						int spawnSegmentY = entitySpawnPos.getY() / 16;
-						Chunk spawnChunk = world.getChunk(entitySpawnPos);
+						Chunk spawnChunk = world.getChunkFromBlockCoords(entitySpawnPos);
 						ClassInheritanceMultiMap<Entity>[] entityLists = spawnChunk.getEntityLists();
 						int chunkEntityCount = 0;
 						for(int l = 0; l < entityLists.length; l++) {
@@ -636,7 +636,7 @@ public abstract class AreaMobSpawner {
 	 * @return
 	 */
 	protected BlockPos getRandomSpawnPosition(World world, ChunkPos chunkPos) {
-		Chunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
+		Chunk chunk = world.getChunkFromChunkCoords(chunkPos.x, chunkPos.z);
 		int x = chunkPos.x * 16 + world.rand.nextInt(16);
 		int z = chunkPos.z * 16 + world.rand.nextInt(16);
 		int y = Math.min(world.rand.nextInt(chunk == null ? world.getActualHeight() : chunk.getTopFilledSegment() + 16 - 1), 256);
@@ -678,7 +678,7 @@ public abstract class AreaMobSpawner {
 
 		for(ChunkPos chunkPos : this.eligibleChunksForSpawning) {
 			if(world.getChunkProvider().getLoadedChunk(chunkPos.x, chunkPos.z) != null) {
-				Chunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
+				Chunk chunk = world.getChunkFromChunkCoords(chunkPos.x, chunkPos.z);
 				ClassInheritanceMultiMap<Entity>[] entityLists = chunk.getEntityLists();
 
 				for(ClassInheritanceMultiMap<Entity> entityList : entityLists) {

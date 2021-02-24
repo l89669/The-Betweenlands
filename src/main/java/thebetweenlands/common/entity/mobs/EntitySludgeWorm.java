@@ -218,7 +218,7 @@ public class EntitySludgeWorm extends EntityMob implements IEntityMultiPart, IMo
 
 		for(int i = 0; i < 5; i++) {
 			Vec3d diff = destinationPart.getPositionVector().subtract(targetPart.getPositionVector());
-			double len = diff.length();
+			double len = diff.lengthVector();
 
 			if(len > maxDist) {
 				Vec3d correction = diff.scale(1.0D / len * (len - maxDist));

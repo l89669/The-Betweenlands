@@ -121,7 +121,7 @@ public class PuppetHandler {
 			if(shieldCap != null) {
 				ProtectionShield shield = shieldCap.getShield();
 				if(shield != null && shield.hasShield()) {
-					AttackShieldResult result = EntityFortressBoss.attackShield(target.world, shield, target.getPositionVector().add(0, 1, 0),
+					AttackShieldResult result = EntityFortressBoss.attackShield(target.world, shield, target.getPositionVector().addVector((double) 0, (double) 1, (double) 0),
 							shield.getYaw(shieldCap.getShieldRotationTicks() + 1), shield.getPitch(shieldCap.getShieldRotationTicks() + 1), shield.getRoll(shieldCap.getShieldRotationTicks() + 1),
 							0.15f, new Object2IntOpenHashMap<>(), source, false);
 
@@ -577,7 +577,7 @@ public class PuppetHandler {
 						Vec3d start = new Vec3d(event.player.posX + offset.x, event.player.posY + event.player.getEyeHeight() + offset.y, event.player.posZ + offset.z);
 						Vec3d vec = new Vec3d(living.posX - start.x, (living.posY + living.getEyeHeight() * 0.8F) - start.y, living.posZ - start.z);
 						vec = vec.normalize();
-						vec = vec.add((event.player.world.rand.nextFloat() - 0.5F) / 3.0F, (event.player.world.rand.nextFloat() - 0.5F) / 3.0F, (event.player.world.rand.nextFloat() - 0.5F) / 3.0F);
+						vec = vec.addVector((double) ((event.player.world.rand.nextFloat() - 0.5F) / 3.0F), (double) ((event.player.world.rand.nextFloat() - 0.5F) / 3.0F), (double) ((event.player.world.rand.nextFloat() - 0.5F) / 3.0F));
 						vec = vec.normalize();
 						double dist = event.player.getDistance(living);
 						vec = vec.scale(dist / 15.0F);
@@ -685,7 +685,7 @@ public class PuppetHandler {
 
 	private static void renderShield(ProtectionShield shield, IPuppeteerCapability cap, EntityPlayer player, float partialTicks, float insideAlpha, float alpha, boolean depthMask) {
 		float ticks = cap.getPrevShieldRotationTicks() + (cap.getShieldRotationTicks() - cap.getPrevShieldRotationTicks()) * partialTicks;
-		RenderFortressBoss.renderShield(shield, player.getPositionVector().add(0, 1, 0), shield.getYaw(ticks), shield.getPitch(ticks), shield.getRoll(ticks), 0.15f, player.ticksExisted, partialTicks, true, true, insideAlpha, insideAlpha * 0.45f, alpha, depthMask);
+		RenderFortressBoss.renderShield(shield, player.getPositionVector().addVector((double) 0, (double) 1, (double) 0), shield.getYaw(ticks), shield.getPitch(ticks), shield.getRoll(ticks), 0.15f, player.ticksExisted, partialTicks, true, true, insideAlpha, insideAlpha * 0.45f, alpha, depthMask);
 	}
 
 	@SideOnly(Side.CLIENT)

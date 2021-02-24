@@ -107,7 +107,7 @@ public class BlockStackablePlant extends BlockPlant implements IStateMappedBlock
 		IBlockState blockState = world.getBlockState(pos);
 		boolean removed = blockState.getBlock().removedByPlayer(blockState, world, pos, player, canHarvest);
 		if (removed) {
-			blockState.getBlock().onPlayerDestroy(world, pos, blockState);
+			blockState.getBlock().onBlockDestroyedByPlayer(world, pos, blockState);
 		}
 		return removed;
 	}

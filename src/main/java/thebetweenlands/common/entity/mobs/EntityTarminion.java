@@ -250,7 +250,7 @@ public class EntityTarminion extends EntityTameableBL implements IEntityBL, IRin
 
 			this.playSound(SoundRegistry.TAR_BEAST_STEP, 1.0F, 2.0F);
 
-			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, world.getDifficulty().getId() * 50, 0));
+			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, world.getDifficulty().getDifficultyId() * 50, 0));
 
 			return true;
 		}

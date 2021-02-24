@@ -530,7 +530,7 @@ public class EntityDecayPitTarget extends Entity implements IEntityMultiPart {
 		
 		for(EntityDecayPitTargetPart shieldPart : parts) {
 			if(shieldPart.isShield) {
-				Vec3d center = shieldPart.getPositionVector().add(0, shieldPart.height / 2, 0);
+				Vec3d center = shieldPart.getPositionVector().addVector((double) 0, (double) (shieldPart.height / 2), (double) 0);
 				
 				this.rotationMatrix.setRotations(0, (float)Math.toRadians(shieldPart.rotationYaw), 0);
 				

@@ -69,7 +69,7 @@ public class BlockGeckoCage extends BlockContainer {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class BlockGeckoCage extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		int rotation = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-		state = state.withProperty(FACING, EnumFacing.byHorizontalIndex(rotation).getOpposite());
+		state = state.withProperty(FACING, EnumFacing.getHorizontal(rotation).getOpposite());
 		worldIn.setBlockState(pos, state, 3);
 	}
 

@@ -124,7 +124,7 @@ public class ObstructionAwarePathNavigateGround<T extends EntityLiving & IPathOb
 				break;
 			}
 
-			Vec3d facingDiff = checkPos.subtract(entityPos.add(0, axis == 1 ? this.entity.height / 2 : 0, 0));
+			Vec3d facingDiff = checkPos.subtract(entityPos.addVector(0, axis == 1 ? this.entity.height / 2 : 0, 0));
 			EnumFacing facing = EnumFacing.getFacingFromVector((float)facingDiff.x, (float)facingDiff.y, (float)facingDiff.z);
 
 			boolean blocked = false;

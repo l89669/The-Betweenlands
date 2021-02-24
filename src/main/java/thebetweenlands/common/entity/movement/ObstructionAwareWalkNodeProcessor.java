@@ -401,8 +401,8 @@ public class ObstructionAwareWalkNodeProcessor<T extends EntityLiving & IPathObs
 					directPathPoint = pointsAbove.length > 0 ? pointsAbove[0] : null;
 
 					if(directPathPoint != null && (directPathPoint.nodeType == PathNodeType.OPEN || directPathPoint.nodeType == PathNodeType.WALKABLE) && this.entity.width < 1.0F) {
-						double offsetX = (double)(x - facing.getXOffset()) + 0.5D;
-						double offsetZ = (double)(z - facing.getZOffset()) + 0.5D;
+						double offsetX = (double)(x - facing.getFrontOffsetX()) + 0.5D;
+						double offsetZ = (double)(z - facing.getFrontOffsetZ()) + 0.5D;
 
 						AxisAlignedBB checkAabb = new AxisAlignedBB(offsetX - halfWidth, (double)y + 0.001D, offsetZ - halfWidth, offsetX + halfWidth, (double)((float)y + this.entity.height), offsetZ + halfWidth);
 						AxisAlignedBB blockAabb = this.blockaccess.getBlockState(pos).getBoundingBox(this.blockaccess, pos);
@@ -424,7 +424,7 @@ public class ObstructionAwareWalkNodeProcessor<T extends EntityLiving & IPathObs
 
 					if(this.entity.width >= 1.0F) {
 						for(EnumFacing pathableFacing : this.pathableFacings) {
-							PathNodeType nodeTypeAtFacing = this.getPathNodeType(this.entity, x + pathableFacing.getXOffset() * this.pathingSizeOffsetX, y + (pathableFacing == EnumFacing.DOWN ? -1 : pathableFacing == EnumFacing.UP ? this.pathingSizeOffsetY : 0), z + pathableFacing.getZOffset() * this.pathingSizeOffsetZ);
+							PathNodeType nodeTypeAtFacing = this.getPathNodeType(this.entity, x + pathableFacing.getFrontOffsetX() * this.pathingSizeOffsetX, y + (pathableFacing == EnumFacing.DOWN ? -1 : pathableFacing == EnumFacing.UP ? this.pathingSizeOffsetY : 0), z + pathableFacing.getFrontOffsetZ() * this.pathingSizeOffsetZ);
 
 							if(nodeTypeAtFacing == PathNodeType.BLOCKED) {
 								directPathPoint = this.openPoint(x, y, z);
@@ -543,9 +543,9 @@ public class ObstructionAwareWalkNodeProcessor<T extends EntityLiving & IPathObs
 				if(exemptions == null || !exemptions.contains(pathableFacing)) {
 					int checkHeight = pathableFacing.getAxis() != Axis.Y ? Math.min(4, this.pathingSizeOffsetY - 1) : 0;
 
-					int cx = x + pathableFacing.getXOffset() * this.pathingSizeOffsetX;
+					int cx = x + pathableFacing.getFrontOffsetX() * this.pathingSizeOffsetX;
 					int cy = y + (pathableFacing == EnumFacing.DOWN ? -1 : pathableFacing == EnumFacing.UP ? this.pathingSizeOffsetY : 0);
-					int cz = z + pathableFacing.getZOffset() * this.pathingSizeOffsetZ;
+					int cz = z + pathableFacing.getFrontOffsetZ() * this.pathingSizeOffsetZ;
 
 					for(int yo = 0; yo <= checkHeight; yo++) {
 						pos.setPos(cx, cy + yo, cz);

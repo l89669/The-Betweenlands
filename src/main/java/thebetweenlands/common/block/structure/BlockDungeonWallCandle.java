@@ -200,7 +200,7 @@ public class BlockDungeonWallCandle extends BlockHorizontal {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byIndex(meta & 0b111);
+		EnumFacing facing = EnumFacing.getFront(meta & 0b111);
 		if(facing.getAxis() == EnumFacing.Axis.Y) {
 			facing = EnumFacing.NORTH;
 		}

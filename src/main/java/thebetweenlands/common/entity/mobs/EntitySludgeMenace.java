@@ -439,7 +439,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 
 		//Spawn animation
 		if(this.ticksExisted < 10) {
-			Vec3d straightPos = this.getPositionVector().add(new Vec3d(this.getFacing().getXOffset(), this.getFacing().getYOffset(), this.getFacing().getZOffset()).scale(this.getArmSize(1) * (this.getEntityAttribute(MAX_ARM_LENGTH).getAttributeValue() + 1)));
+			Vec3d straightPos = this.getPositionVector().add(new Vec3d(this.getFacing().getFrontOffsetX(), this.getFacing().getFrontOffsetY(), this.getFacing().getFrontOffsetZ()).scale(this.getArmSize(1) * (this.getEntityAttribute(MAX_ARM_LENGTH).getAttributeValue() + 1)));
 			this.rootTip.setPosition(straightPos.x, straightPos.y, straightPos.z);
 		}
 
@@ -597,7 +597,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 					this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY + this.height / 2.0D, this.posZ, dropXP));
 				}
 
-				List<LocationStorage> locations = LocationStorage.getLocations(this.world, this.getPositionVector().add(0, 2, 0));
+				List<LocationStorage> locations = LocationStorage.getLocations(this.world, this.getPositionVector().addVector((double) 0, (double) 2, (double) 0));
 				for(LocationStorage location : locations) {
 					if(location.getType() == EnumLocationType.SLUDGE_WORM_DUNGEON) {
 						//Remove block guard
@@ -626,7 +626,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 			Entity lastPart = parts[parts.length - 1];
 			Entity secondLastPart = parts[parts.length - 2];
 
-			Vec3d dir = lastPart.getPositionVector().subtract(secondLastPart.getPositionVector()).normalize().add((this.rand.nextFloat() - 0.5f) * 0.5f, 0, (this.rand.nextFloat() - 0.5f) * 0.5f).scale(0.1D);
+			Vec3d dir = lastPart.getPositionVector().subtract(secondLastPart.getPositionVector()).normalize().addVector((double) ((this.rand.nextFloat() - 0.5f) * 0.5f), (double) 0, (double) ((this.rand.nextFloat() - 0.5f) * 0.5f)).scale(0.1D);
 
 			double x = lastPart.posX;
 			double y = lastPart.posY + lastPart.height / 2;
@@ -770,7 +770,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 
 		float str = 0.2f;
 
-		return this.rootTip.getPositionVector().add((this.world.rand.nextFloat() - 0.5f) * str + moveDir.x, (this.world.rand.nextFloat() - 0.5f) * str + 0.01f, (this.world.rand.nextFloat() - 0.5f) * str + moveDir.z);
+		return this.rootTip.getPositionVector().addVector((this.world.rand.nextFloat() - 0.5f) * str + moveDir.x, (double) ((this.world.rand.nextFloat() - 0.5f) * str + 0.01f), (this.world.rand.nextFloat() - 0.5f) * str + moveDir.z);
 	}
 
 	protected Vec3d updateSpitMobsTipPos(Vec3d armStartWorld, float maxArmLength, Vec3d dirFwd, Vec3d dirUp) {
@@ -848,7 +848,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 			float rx = (float) Math.cos(this.ticksExisted * 0.05f);
 			float rz = (float) Math.sin(this.ticksExisted * 0.05f);
 
-			targetTipPos = armStartWorld.add(dirFwd.scale(maxArmLength / 2)).add(rx * 2, 0, rz * 2);
+			targetTipPos = armStartWorld.add(dirFwd.scale(maxArmLength / 2)).addVector((double) (rx * 2), (double) 0, (double) (rz * 2));
 		} else if(nextBulge != null && nextBulge.type == BulgeType.LEECH && target != null) {
 			Vec3d bendPos = armStartWorld.add(dirFwd.scale(maxArmLength));
 
@@ -874,7 +874,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 
 		Vec3d diff = targetTipPos.subtract(tipPos);
 
-		targetTipPos = tipPos.add(diff.normalize().scale(Math.min(diff.length(), 0.5D)));
+		targetTipPos = tipPos.add(diff.normalize().scale(Math.min(diff.lengthVector(), 0.5D)));
 
 		return targetTipPos;
 	}
@@ -896,13 +896,13 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 
 		float swingLength = maxArmLength + 0.2f;
 
-		Vec3d targetTipPos = armStartWorld.add(Math.cos(drive) * swingLength, 1.8F + (Math.sin(drive * 0.28f) + 1) * 2.2f, Math.sin(drive) * swingLength);
+		Vec3d targetTipPos = armStartWorld.addVector(Math.cos(drive) * swingLength, 1.8F + (Math.sin(drive * 0.28f) + 1) * 2.2f, Math.sin(drive) * swingLength);
 
 		Vec3d tipPos = this.rootTip.getPositionVector();
 
 		Vec3d diff = targetTipPos.subtract(tipPos);
 
-		targetTipPos = tipPos.add(diff.normalize().scale(Math.min(diff.length(), 0.5D + this.actionTimer / 300.0f * 2.5D)));
+		targetTipPos = tipPos.add(diff.normalize().scale(Math.min(diff.lengthVector(), 0.5D + this.actionTimer / 300.0f * 2.5D)));
 
 		return targetTipPos;
 	}
@@ -938,7 +938,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 			float idleY = MathHelper.sin(this.armMovementTicks / 3.0f) * 0.75F;
 			float idleZ = (MathHelper.cos(this.armMovementTicks / 8.0f) + 1) * 0.25f;
 
-			return this.actionTargetPos.add(idleX, idleY + 1.5f, idleZ);
+			return this.actionTargetPos.addVector((double) idleX, (double) (idleY + 1.5f), (double) idleZ);
 		} else {
 			this.damageCounter = 0.0f;
 			this.hitCounter = 0;
@@ -965,13 +965,13 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 				Vec3d targetTipPos = armStartWorld.add(dirFwd.scale(maxArmLength));
 
 				if(this.actionTargetPos != null) {
-					targetTipPos = this.actionTargetPos.add(0, this.getAttackTarget() != null ? this.getAttackTarget().height / 2 : 0, 0);
+					targetTipPos = this.actionTargetPos.addVector((double) 0, (double) (this.getAttackTarget() != null ? this.getAttackTarget().height / 2 : 0), (double) 0);
 				}
 
 				Vec3d tipPos = this.rootTip.getPositionVector();
 
 				Vec3d tipDiff = targetTipPos.subtract(tipPos);
-				targetTipPos = tipPos.add(tipDiff.normalize().scale(Math.min(tipDiff.length(), speed)));
+				targetTipPos = tipPos.add(tipDiff.normalize().scale(Math.min(tipDiff.lengthVector(), speed)));
 
 				return targetTipPos;
 			}
@@ -1037,13 +1037,13 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 			}
 		}
 
-		Vec3d targetTipPos = armStartWorld.add(targetDir.x * Math.cos(rot), Math.sin(rot) * targetDir.length(), targetDir.z * Math.cos(rot));
+		Vec3d targetTipPos = armStartWorld.addVector(targetDir.x * Math.cos(rot), Math.sin(rot) * targetDir.lengthVector(), targetDir.z * Math.cos(rot));
 
 		Vec3d tipPos = this.rootTip.getPositionVector();
 
 		Vec3d diff = targetTipPos.subtract(tipPos);
 
-		targetTipPos = tipPos.add(diff.normalize().scale(Math.min(diff.length(), 0.5D + this.actionTimer / 90.0f * 5.0D)));
+		targetTipPos = tipPos.add(diff.normalize().scale(Math.min(diff.lengthVector(), 0.5D + this.actionTimer / 90.0f * 5.0D)));
 
 		return targetTipPos;
 	}
@@ -1061,7 +1061,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 
 		EntityLivingBase target = this.getAttackTarget();
 		if(target != null) {
-			targetTipPos = target.getPositionVector().add(0, target.height / 2, 0);
+			targetTipPos = target.getPositionVector().addVector((double) 0, (double) (target.height / 2), (double) 0);
 		}
 
 		float forwardPos = (float) dirFwd.dotProduct(targetTipPos.subtract(armStartWorld));
@@ -1076,7 +1076,7 @@ public class EntitySludgeMenace extends EntityWallLivingRoot implements IEntityS
 		Vec3d tipPos = this.rootTip.getPositionVector();
 
 		Vec3d tipDiff = targetTipPos.subtract(tipPos);
-		targetTipPos = tipPos.add(tipDiff.normalize().scale(Math.min(tipDiff.length(), 0.125D + flailingStrength * 0.8D)));
+		targetTipPos = tipPos.add(tipDiff.normalize().scale(Math.min(tipDiff.lengthVector(), 0.125D + flailingStrength * 0.8D)));
 
 		return targetTipPos;
 	}

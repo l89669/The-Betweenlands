@@ -119,7 +119,7 @@ public class BlockBauble extends Block implements ITintedBlock, IShearable {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

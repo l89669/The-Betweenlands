@@ -77,7 +77,7 @@ public class BlockLootPot extends BasicBlock implements ITileEntityProvider, ICu
 	}
 	
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -110,7 +110,7 @@ public class BlockLootPot extends BasicBlock implements ITileEntityProvider, ICu
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(VARIANT, EnumLootPot.byMetadata(meta)).withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 3));
+		return this.getDefaultState().withProperty(VARIANT, EnumLootPot.byMetadata(meta)).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class BlockLootPot extends BasicBlock implements ITileEntityProvider, ICu
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		int rotation = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-		state = state.withProperty(FACING, EnumFacing.byHorizontalIndex(rotation));
+		state = state.withProperty(FACING, EnumFacing.getHorizontal(rotation));
 		state = state.withProperty(VARIANT, EnumLootPot.byMetadata(stack.getItemDamage()));
 		worldIn.setBlockState(pos, state, 3);
 		TileEntity tile = worldIn.getTileEntity(pos);
@@ -196,7 +196,7 @@ public class BlockLootPot extends BasicBlock implements ITileEntityProvider, ICu
 	}
 
 	@Override
-	public void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state) {
+	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
 		if (!worldIn.isRemote) {
 			if (worldIn.rand.nextInt(3) == 0) {
 				EntityTermite entity = new EntityTermite(worldIn);
@@ -205,7 +205,7 @@ public class BlockLootPot extends BasicBlock implements ITileEntityProvider, ICu
 				worldIn.spawnEntity(entity);
 			}
 		}
-		super.onPlayerDestroy(worldIn, pos, state);
+		super.onBlockDestroyedByPlayer(worldIn, pos, state);
 	}
 
 	@Override

@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class ItemSickle extends Item implements ICorrodible, IAnimatorRepairable {
 	public ItemSickle() {
-		this.setTranslationKey("thebetweenlands.sickle");
+		this.setUnlocalizedName("thebetweenlands.sickle");
 		this.setMaxStackSize(1);
 		this.setMaxDamage(2500);
 		this.setCreativeTab(BLCreativeTabs.GEARS);

@@ -257,12 +257,12 @@ public class AspectManager {
 			//System.out.println("Loaded aspects: ");
 			//int loaded = this.matchedAspects.size();
 			//for(Entry<AspectItem, List<Aspect>> entry : this.matchedAspects.entrySet()) {
-			//	System.out.println(entry.getKey().original.getTranslationKey() + " " + entry.getValue());
+			//	System.out.println(entry.getKey().original.getUnlocalizedName() + " " + entry.getValue());
 			//}
 			this.updateAspects(aspectSeed);
 			//System.out.println("Updated aspects: ");
 			//for(Entry<AspectItem, List<Aspect>> entry : this.matchedAspects.entrySet()) {
-			//	System.out.println(entry.getKey().original.getTranslationKey() + " " + entry.getValue());
+			//	System.out.println(entry.getKey().original.getUnlocalizedName() + " " + entry.getValue());
 			//}
 			//System.out.println("Total inserted: " + (this.matchedAspects.size() - loaded));
 		} else {

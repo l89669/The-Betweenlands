@@ -48,7 +48,7 @@ public class BlockLeavesSpiritTree extends BlockLeavesBetweenlands {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

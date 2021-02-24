@@ -45,7 +45,7 @@ public class EntityAIFlyingWander extends EntityAIBase {
 			BlockPos groundHeight = FlightMoveHelper.getGroundHeight(this.entity.world, new BlockPos(randomPosition), 8, new BlockPos(0, 0, 0));
 
 			if(randomPosition.y - groundHeight.getY() >= 8) {
-				randomPosition = randomPosition.add(0, -6, 0);
+				randomPosition = randomPosition.addVector((double) 0, (double) -6, (double) 0);
 			}
 
 			this.x = randomPosition.x;

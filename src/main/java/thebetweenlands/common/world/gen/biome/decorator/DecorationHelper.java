@@ -916,7 +916,7 @@ public class DecorationHelper {
 				Biome biomeW = decorator.getWorld().getBiome(pos.setPos(decorator.getX() + xo - biomeCheckRange, decorator.getY(), decorator.getZ() + zo));
 				if(biomeN == biome && biomeE == biome && biomeS == biome && biomeW == biome) {
 					pos.setPos(decorator.getX() + xo, decorator.getY(), decorator.getZ() + zo);
-					pos.setY(decorator.getWorld().getChunk(pos).getHeightValue(pos.getX() & 15, pos.getY() & 15));
+					pos.setY(decorator.getWorld().getChunkFromBlockCoords(pos).getHeightValue(pos.getX() & 15, pos.getY() & 15));
 					BlockPos genPos = null;
 					for(int i = 0; i > -8; i--) {
 						if(surface.matches(decorator.getWorld().getBlockState(pos))) {

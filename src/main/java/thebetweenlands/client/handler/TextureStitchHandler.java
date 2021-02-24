@@ -87,7 +87,7 @@ public class TextureStitchHandler {
 		if(BetweenlandsConfig.DEBUG.dumpPackedTextures) {
 			for(Entry<ResourceLocation, BufferedImage> packed : packedTextures.entrySet()) {
 				try {
-					File f = new File("betweenlands/packed_textures/" + packed.getKey().getPath() + ".png");
+					File f = new File("betweenlands/packed_textures/" + packed.getKey().getResourcePath() + ".png");
 					f.mkdirs();
 					ImageIO.write(packed.getValue(), "PNG", f);
 				} catch (IOException ex) {
@@ -119,7 +119,7 @@ public class TextureStitchHandler {
 				ResourceLocation[] variants = ICorrodible.getItemCorrodibleVariants((Item & ICorrodible) item);
 				for(ResourceLocation variant : variants) {
 					try {
-						ResourceLocation modelLocation = new ResourceLocation(variant.getNamespace(), "item/" + variant.getPath());
+						ResourceLocation modelLocation = new ResourceLocation(variant.getResourceDomain(), "item/" + variant.getResourcePath());
 						IModel model = ModelLoaderRegistry.getModel(modelLocation);
 						List<ResourceLocation> textures = Lists.newArrayList();
 						textures.addAll(model.getTextures());
@@ -132,15 +132,15 @@ public class TextureStitchHandler {
 							}
 						}
 						for(ResourceLocation texture : textures) {
-							String path = texture.getPath();
+							String path = texture.getResourcePath();
 							if(path.contains("/")) {
 								String corrodibleSuffix = "_corrodible";
-								String fileName = texture.getPath().substring(texture.getPath().lastIndexOf("/") + 1);
+								String fileName = texture.getResourcePath().substring(texture.getResourcePath().lastIndexOf("/") + 1);
 								if(fileName.endsWith(corrodibleSuffix)) {
-									ResourceLocation completeBaseTextureLocation = new ResourceLocation(texture.getNamespace(), String.format("textures/%s.png", texture.getPath()));
+									ResourceLocation completeBaseTextureLocation = new ResourceLocation(texture.getResourceDomain(), String.format("textures/%s.png", texture.getResourcePath()));
 									for (int n = 0; n < CorrosionHelper.CORROSION_STAGE_COUNT; n++) {
-										String corrosionSpriteName = texture.getNamespace() + ":" + path.substring(0, path.length() - corrodibleSuffix.length()) + "_corrosion_" + n;
-										TextureCorrosion corrosionTexture = new TextureCorrosion(corrosionSpriteName, completeBaseTextureLocation, n, item.getTranslationKey().hashCode());
+										String corrosionSpriteName = texture.getResourceDomain() + ":" + path.substring(0, path.length() - corrodibleSuffix.length()) + "_corrosion_" + n;
+										TextureCorrosion corrosionTexture = new TextureCorrosion(corrosionSpriteName, completeBaseTextureLocation, n, item.getUnlocalizedName().hashCode());
 										//Forcibly sets the texture entry because TextureMap#setTextureEntry doesn't allow 
 										//overwriting a previously added sprite (usually set in ModelLoader#setupModelRegistry).
 										//Maybe find a better way to do this, if at all possible anyways
@@ -232,7 +232,7 @@ public class TextureStitchHandler {
 
 	private ResourceLocation getResourceLocation(String basePath, TextureAtlasSprite sprite) {
 		ResourceLocation resourcelocation = new ResourceLocation(sprite.getIconName());
-		return new ResourceLocation(resourcelocation.getNamespace(), String.format("%s/%s%s", basePath, resourcelocation.getPath(), ".png"));
+		return new ResourceLocation(resourcelocation.getResourceDomain(), String.format("%s/%s%s", basePath, resourcelocation.getResourcePath(), ".png"));
 	}
 
 	@SubscribeEvent

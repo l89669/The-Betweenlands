@@ -436,7 +436,7 @@ public class EntityBarrishee extends EntityMob implements IEntityScreenShake, IE
 	private boolean isLookingAtAttackTarget(Entity entity) {
 		Vec3d vec3d = getLook(1.0F).normalize();
 		Vec3d vec3d1 = new Vec3d(entity.posX - posX, entity.getEntityBoundingBox().minY + (double) entity.getEyeHeight() - (posY + (double) getEyeHeight()), entity.posZ - posZ);
-		double d0 = vec3d1.length();
+		double d0 = vec3d1.lengthVector();
 		vec3d1 = vec3d1.normalize();
 		double d1 = vec3d.dotProduct(vec3d1);
 		return d1 > 1.0D - 0.025D / d0 ? canEntityBeSeen(entity) : false;

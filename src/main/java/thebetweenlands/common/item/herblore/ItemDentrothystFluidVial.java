@@ -91,17 +91,17 @@ public class ItemDentrothystFluidVial extends UniversalBucket implements ItemReg
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		if (stack.getMetadata() >= 2)
-			return getTranslationKey() + ".unknown";
-		return getTranslationKey() + (stack.getMetadata() == 0 ? "_green": "_orange");
+			return getUnlocalizedName() + ".unknown";
+		return getUnlocalizedName() + (stack.getMetadata() == 0 ? "_green": "_orange");
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		final FluidStack fluidStack = getFluid(stack);
-		final String unlocName = getEmpty(stack).getTranslationKey();
+		final String unlocName = getEmpty(stack).getUnlocalizedName();
 
 		if (fluidStack == null)
 			return I18n.translateToLocal(unlocName + ".name").trim();
@@ -111,7 +111,7 @@ public class ItemDentrothystFluidVial extends UniversalBucket implements ItemReg
 		if (I18n.canTranslate(fluidUnlocKey))
 			return I18n.translateToLocal(fluidUnlocKey).trim();
 
-		return I18n.translateToLocalFormatted(getEmpty(stack).getTranslationKey() + ".filled.name", fluidStack.getFluid().getRarity(fluidStack).color + fluidStack.getLocalizedName() + TextFormatting.WHITE);
+		return I18n.translateToLocalFormatted(getEmpty(stack).getUnlocalizedName() + ".filled.name", fluidStack.getFluid().getRarity(fluidStack).rarityColor + fluidStack.getLocalizedName() + TextFormatting.WHITE);
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public class BlockDungeonDoorCombination extends BasicBlock implements ITileEnti
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byIndex(meta); // Using this instead of 'byHorizontalIndex' because the ids don't match and previous was release
+		EnumFacing facing = EnumFacing.getFront(meta); // Using this instead of 'byHorizontalIndex' because the ids don't match and previous was release
 		return getDefaultState().withProperty(FACING, facing.getAxis().isHorizontal() ? facing: EnumFacing.NORTH);
 	}
 

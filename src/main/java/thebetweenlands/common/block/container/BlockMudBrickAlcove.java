@@ -109,7 +109,7 @@ public class BlockMudBrickAlcove extends BasicBlock implements ITileEntityProvid
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -125,7 +125,7 @@ public class BlockMudBrickAlcove extends BasicBlock implements ITileEntityProvid
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
 	}
 
 	@Override

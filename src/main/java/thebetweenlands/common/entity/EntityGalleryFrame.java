@@ -181,7 +181,7 @@ public class EntityGalleryFrame extends EntityHanging implements IEntityAddition
 		this.type = Type.values()[buf.readInt()];
 		this.hangingPosition = BlockPos.fromLong(buf.readLong());
 		if(buf.readBoolean()) {
-			this.facingDirection = EnumFacing.byIndex(buf.readInt());
+			this.facingDirection = EnumFacing.getFront(buf.readInt());
 			this.updateFacingWithBoundingBox(this.facingDirection);
 		}
 	}

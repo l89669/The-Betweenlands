@@ -130,7 +130,7 @@ public class LocationHandler {
 				if(location != null && location.getGuard() != null && location.getGuard().isGuarded(player.world, player, resultingPos)) {
 					event.setUseItem(Result.DENY);
 					if(event.getWorld().isRemote) {
-						BLParticles.BLOCK_PROTECTION.spawn(event.getWorld(), hitVec.x + facing.getXOffset() * 0.025F, hitVec.y + facing.getYOffset() * 0.025F, hitVec.z + facing.getZOffset() * 0.025F, ParticleArgs.get().withData(facing));
+						BLParticles.BLOCK_PROTECTION.spawn(event.getWorld(), hitVec.x + facing.getFrontOffsetX() * 0.025F, hitVec.y + facing.getFrontOffsetY() * 0.025F, hitVec.z + facing.getFrontOffsetZ() * 0.025F, ParticleArgs.get().withData(facing));
 					}
 					return;
 				}
@@ -164,7 +164,7 @@ public class LocationHandler {
 
 			if(rayTrace != null && rayTrace.typeOfHit == RayTraceResult.Type.BLOCK && pos.equals(rayTrace.getBlockPos())) {
 				Vec3d hitVec = rayTrace.hitVec;
-				BLParticles.BLOCK_PROTECTION.spawn(player.world, hitVec.x + rayTrace.sideHit.getXOffset() * 0.025F, hitVec.y + rayTrace.sideHit.getYOffset() * 0.025F, hitVec.z + rayTrace.sideHit.getZOffset() * 0.025F, ParticleArgs.get().withData(rayTrace.sideHit));
+				BLParticles.BLOCK_PROTECTION.spawn(player.world, hitVec.x + rayTrace.sideHit.getFrontOffsetX() * 0.025F, hitVec.y + rayTrace.sideHit.getFrontOffsetY() * 0.025F, hitVec.z + rayTrace.sideHit.getFrontOffsetZ() * 0.025F, ParticleArgs.get().withData(rayTrace.sideHit));
 			}
 		}
 	}
@@ -208,7 +208,7 @@ public class LocationHandler {
 			List<LocationStorage> locations = LocationStorage.getLocations(event.getWorld(), new Vec3d(event.getPos()));
 			for(LocationStorage location : locations) {
 				if(location != null && location.getGuard() != null && location.getGuard().isGuarded(event.getWorld(), event.getEntityPlayer(), event.getPos())) {
-					BLParticles.BLOCK_PROTECTION.spawn(event.getWorld(), hitVec.x + facing.getXOffset() * 0.025F, hitVec.y + facing.getYOffset() * 0.025F, hitVec.z + facing.getZOffset() * 0.025F, ParticleArgs.get().withData(facing));
+					BLParticles.BLOCK_PROTECTION.spawn(event.getWorld(), hitVec.x + facing.getFrontOffsetX() * 0.025F, hitVec.y + facing.getFrontOffsetY() * 0.025F, hitVec.z + facing.getFrontOffsetZ() * 0.025F, ParticleArgs.get().withData(facing));
 					break;
 				}
 			}

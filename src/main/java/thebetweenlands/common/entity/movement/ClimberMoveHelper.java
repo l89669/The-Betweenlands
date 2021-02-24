@@ -26,7 +26,7 @@ public class ClimberMoveHelper extends EntityMoveHelper {
 			this.action = EntityMoveHelper.Action.WAIT;
 
 			Pair<EnumFacing, Vec3d> walkingSide = this.climber.getWalkingSide();
-			Vec3d normal = new Vec3d(walkingSide.getLeft().getXOffset(), walkingSide.getLeft().getYOffset(), walkingSide.getLeft().getZOffset());
+			Vec3d normal = new Vec3d(walkingSide.getLeft().getFrontOffsetX(), walkingSide.getLeft().getFrontOffsetY(), walkingSide.getLeft().getFrontOffsetZ());
 
 			double dx = this.posX - this.entity.posX;
 			double dy = this.posY + 0.5f - (this.entity.posY + this.entity.height / 2.0f);
@@ -35,7 +35,7 @@ public class ClimberMoveHelper extends EntityMoveHelper {
 			Vec3d dir = new Vec3d(dx, dy, dz);
 
 			Vec3d targetDir = dir.subtract(normal.scale(dir.dotProduct(normal)));
-			double targetDist = targetDir.length();
+			double targetDist = targetDir.lengthVector();
 			targetDir = targetDir.normalize();
 
 			if(targetDist < 0.0001D) {

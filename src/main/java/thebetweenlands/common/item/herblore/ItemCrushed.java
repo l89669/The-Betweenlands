@@ -58,9 +58,9 @@ public class ItemCrushed extends Item implements ItemRegistry.IMultipleItemModel
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		try {
-			return "item.thebetweenlands." + IGenericItem.getFromStack(EnumItemCrushed.class, stack).getTranslationKey();
+			return "item.thebetweenlands." + IGenericItem.getFromStack(EnumItemCrushed.class, stack).getUnlocalizedName();
 		} catch (Exception e) {
 			return "item.thebetweenlands.unknown_crushed";
 		}
@@ -148,7 +148,7 @@ public class ItemCrushed extends Item implements ItemRegistry.IMultipleItemModel
 		}
 
 		@Override
-		public String getTranslationKey() {
+		public String getUnlocalizedName() {
 			return this.unlocalizedName;
 		}
 

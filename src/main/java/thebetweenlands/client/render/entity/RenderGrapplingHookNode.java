@@ -278,12 +278,12 @@ public class RenderGrapplingHookNode extends Render<EntityGrapplingHookNode> {
 				offset = matrix.transformVec(offset, Vec3d.ZERO);
 
 				matrix.setRotations(0, 0, (float)Math.toRadians(rotPitch));
-				offset = matrix.transformVec(offset.add(0, -1.4D, 0), Vec3d.ZERO);
+				offset = matrix.transformVec(offset.addVector(0, -1.4D, 0), Vec3d.ZERO);
 
 				matrix.setRotations(0, (float)Math.toRadians(rotYaw), 0);
 				offset = matrix.transformVec(offset, Vec3d.ZERO);
 
-				offset = offset.add(0, 1.4D, 0);
+				offset = offset.addVector(0, 1.4D, 0);
 				
 				endX = interpolate(controller.lastTickPosX - camPosX, controller.posX - camPosX, partialTicks) + offset.x;
 				endY = interpolate(controller.lastTickPosY - camPosY, controller.posY - camPosY, partialTicks) + offset.y;

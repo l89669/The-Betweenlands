@@ -46,7 +46,7 @@ public class ItemBlockEnum<T extends Enum<T> & IStringSerializable> extends Item
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		T match = null;
 		if (this.hasGenericMetaSelector)
 			for (T type : this.values)
@@ -66,7 +66,7 @@ public class ItemBlockEnum<T extends Enum<T> & IStringSerializable> extends Item
 	private String getTranslationKey(T value) {
 		String name = this.unlocalizedNames[value.ordinal()];
 		if (name == null) {
-			name = super.getTranslationKey() + this.separator + value.getName().toLowerCase(Locale.ENGLISH);
+			name = super.getUnlocalizedName() + this.separator + value.getName().toLowerCase(Locale.ENGLISH);
 			this.unlocalizedNames[value.ordinal()] = name;
 		}
 		return name;

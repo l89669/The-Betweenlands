@@ -47,14 +47,14 @@ public class BlockDecayPitHangingChain extends BlockHorizontal implements ITileE
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		// S = 0, W = 1, N = 2, E = 3
-		return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
+		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta));
 	}
 
 	@Override

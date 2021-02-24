@@ -390,7 +390,7 @@ public class EntityCCGroundSpawner extends EntityProximitySpawner {
 				tagList.appendTag(tag);
 			}
 
-		if (!tagList.isEmpty()) {
+		if (!tagList.hasNoTags()) {
 			entityNbt.setTag("tempBlockTypes", tagList);
 			NBTTagCompound nbttagcompoundPos = NBTUtil.createPosTag(pos);
 			entityNbt.setTag("originPos", nbttagcompoundPos);

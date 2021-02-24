@@ -100,7 +100,7 @@ public class BlockDungeonDoorRunes extends BasicBlock implements ITileEntityProv
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byIndex(meta & 0b111); // Using this instead of 'byHorizontalIndex' because the ids don't match and previous was release
+		EnumFacing facing = EnumFacing.getFront(meta & 0b111); // Using this instead of 'byHorizontalIndex' because the ids don't match and previous was release
 		return getDefaultState().withProperty(FACING, facing.getAxis().isHorizontal() ? facing: EnumFacing.NORTH).withProperty(INVISIBLE, (meta & 8) > 0);
 	}
 

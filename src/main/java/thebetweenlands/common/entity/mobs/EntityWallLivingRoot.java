@@ -213,7 +213,7 @@ public class EntityWallLivingRoot extends EntityMovingWallFace implements IMob, 
 
 		EntityLivingBase target = this.getAttackTarget();
 		if(target != null) {
-			targetTipPos = target.getPositionVector().add(0, target.height / 2, 0);
+			targetTipPos = target.getPositionVector().addVector((double) 0, (double) (target.height / 2), (double) 0);
 		}
 
 		float forwardPos = (float) dirFwd.dotProduct(targetTipPos.subtract(armStartWorld));
@@ -228,7 +228,7 @@ public class EntityWallLivingRoot extends EntityMovingWallFace implements IMob, 
 		Vec3d tipPos = this.rootTip.getPositionVector();
 
 		Vec3d tipDiff = targetTipPos.subtract(tipPos);
-		targetTipPos = tipPos.add(tipDiff.normalize().scale(Math.min(tipDiff.length(), 0.1D + flailingStrength * 0.9D)));
+		targetTipPos = tipPos.add(tipDiff.normalize().scale(Math.min(tipDiff.lengthVector(), 0.1D + flailingStrength * 0.9D)));
 
 		return targetTipPos;
 	}
@@ -249,10 +249,10 @@ public class EntityWallLivingRoot extends EntityMovingWallFace implements IMob, 
 
 		float segmentLength = maxArmLength / (float)(this.getNumSegments() - 2);
 
-		Vec3d dirFwd = new Vec3d(this.getFacing().getXOffset(), this.getFacing().getYOffset(), this.getFacing().getZOffset());;
-		Vec3d dirUp = new Vec3d(this.getFacingUp().getXOffset(), this.getFacingUp().getYOffset(), this.getFacingUp().getZOffset());
+		Vec3d dirFwd = new Vec3d(this.getFacing().getFrontOffsetX(), this.getFacing().getFrontOffsetY(), this.getFacing().getFrontOffsetZ());;
+		Vec3d dirUp = new Vec3d(this.getFacingUp().getFrontOffsetX(), this.getFacingUp().getFrontOffsetY(), this.getFacingUp().getFrontOffsetZ());
 
-		Vec3d armStart = new Vec3d(0, this.height / 2, 0).add(-dirFwd.x * (this.width / 2 - 0.1f), -dirFwd.y * (this.height / 2 - 0.1f), -dirFwd.z * (this.width / 2 - 0.1f));
+		Vec3d armStart = new Vec3d(0, this.height / 2, 0).addVector(-dirFwd.x * (this.width / 2 - 0.1f), -dirFwd.y * (this.height / 2 - 0.1f), -dirFwd.z * (this.width / 2 - 0.1f));
 		Vec3d ikArmStart = new Vec3d(0, this.height / 2, 0).add(dirFwd.scale(0.1f));
 
 		for(MultiPartEntityPart part : this.parts) {
@@ -260,13 +260,13 @@ public class EntityWallLivingRoot extends EntityMovingWallFace implements IMob, 
 		}
 
 		if(!this.rootTipPositionSet) {
-			Vec3d tipPos = this.getPositionVector().add(armStart.add(dirFwd.scale(maxArmLength)).add(0, -this.rootTip.height / 2, 0));
+			Vec3d tipPos = this.getPositionVector().add(armStart.add(dirFwd.scale(maxArmLength)).addVector((double) 0, (double) (-this.rootTip.height / 2), (double) 0));
 			this.setTipPos(tipPos);
 			this.rootTip.setPosition(tipPos.x, tipPos.y, tipPos.z);
 			this.rootTipPositionSet = true;
 		}
 
-		Vec3d armEnd = this.rootTip.getPositionVector().add(0, this.rootTip.height / 2, 0).subtract(this.getPositionVector());
+		Vec3d armEnd = this.rootTip.getPositionVector().addVector((double) 0, (double) (this.rootTip.height / 2), (double) 0).subtract(this.getPositionVector());
 
 		if(!this.world.isRemote) {
 			Vec3d armStartWorld = this.getPositionVector().add(ikArmStart);
@@ -274,7 +274,7 @@ public class EntityWallLivingRoot extends EntityMovingWallFace implements IMob, 
 			Vec3d tipPos = this.updateTargetTipPos(armStartWorld, maxArmLength, dirFwd, dirUp);
 
 			//Clamp to max reach sphere
-			tipPos = armStartWorld.add(tipPos.subtract(armStartWorld).normalize().scale(Math.min(tipPos.subtract(armStartWorld).length(), maxArmLength + this.getArmLengthSlack())));
+			tipPos = armStartWorld.add(tipPos.subtract(armStartWorld).normalize().scale(Math.min(tipPos.subtract(armStartWorld).lengthVector(), maxArmLength + this.getArmLengthSlack())));
 
 			this.setTipPos(tipPos);
 			this.rootTip.setPosition(tipPos.x, tipPos.y, tipPos.z);
@@ -291,7 +291,7 @@ public class EntityWallLivingRoot extends EntityMovingWallFace implements IMob, 
 			for(int i = 0; i < this.getNumSegments(); i++) {
 				ArmSegment segment = new ArmSegment(this);
 				float dist = maxArmLength / (float)(this.getNumSegments() - 1) * i;
-				segment.update(dirUp, ikArmStart.add(dirFwd.x * dist, dirFwd.y * dist, dirFwd.z * dist), dirFwd);
+				segment.update(dirUp, ikArmStart.addVector(dirFwd.x * dist, dirFwd.y * dist, dirFwd.z * dist), dirFwd);
 				this.armSegments.add(segment);
 			}
 

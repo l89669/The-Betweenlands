@@ -116,7 +116,7 @@ public class ParticleLightningArc extends Particle {
 
 			float offsetScale = i == subdivs - 1 ? 0.0f : 1.0f;
 			
-			Vec3d endpoint = arc.from.add(arc.dir.scale(t2)).add((this.rand.nextFloat() - 0.5f) * offsets * offsetScale, (this.rand.nextFloat() - 0.5f) * offsets * offsetScale, (this.rand.nextFloat() - 0.5f) * offsets * offsetScale);
+			Vec3d endpoint = arc.from.add(arc.dir.scale(t2)).addVector((this.rand.nextFloat() - 0.5f) * offsets * offsetScale, (this.rand.nextFloat() - 0.5f) * offsets * offsetScale, (this.rand.nextFloat() - 0.5f) * offsets * offsetScale);
 
 			Arc newArc;
 			if(prevArc == null) {
@@ -180,9 +180,9 @@ public class ParticleLightningArc extends Particle {
 
 			float jitter = (arc.depth + 1) * 0.02f;
 
-			float length = (float)arc.dir.length() * (arc.depth > 0 ? 0.9f * arc.t : 1.0f);
+			float length = (float)arc.dir.lengthVector() * (arc.depth > 0 ? 0.9f * arc.t : 1.0f);
 
-			arc.dir = arc.dir.add((this.rand.nextFloat() - 0.5f) * jitter, (this.rand.nextFloat() - 0.5f) * jitter, (this.rand.nextFloat() - 0.5f) * jitter).normalize().scale(length);
+			arc.dir = arc.dir.addVector((double) ((this.rand.nextFloat() - 0.5f) * jitter), (double) ((this.rand.nextFloat() - 0.5f) * jitter), (double) ((this.rand.nextFloat() - 0.5f) * jitter)).normalize().scale(length);
 		}
 
 		int iters = Math.round(this.minSplitSpeed + this.rand.nextFloat() * (this.maxSplitSpeed - this.minSplitSpeed));
@@ -196,9 +196,9 @@ public class ParticleLightningArc extends Particle {
 					for(int i = 0; i < numSplits; i++) {
 						arc.splits--;
 
-						float len = (float)arc.dir.length();
+						float len = (float)arc.dir.lengthVector();
 
-						Vec3d dir = arc.dir.add((this.rand.nextFloat() - 0.5f) * len * 0.5f, (this.rand.nextFloat() - 0.5f) * len * 0.5f, (this.rand.nextFloat() - 0.5f) * len * 0.5f).normalize().scale(len * arc.subdivs * this.lengthDecay);
+						Vec3d dir = arc.dir.addVector((double) ((this.rand.nextFloat() - 0.5f) * len * 0.5f), (double) ((this.rand.nextFloat() - 0.5f) * len * 0.5f), (double) ((this.rand.nextFloat() - 0.5f) * len * 0.5f)).normalize().scale(len * arc.subdivs * this.lengthDecay);
 
 						float t = this.rand.nextFloat();
 						Vec3d from = arc.from.add(arc.dir.scale(t));

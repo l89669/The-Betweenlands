@@ -61,7 +61,7 @@ public class VertexBatchRenderer {
 			if(this.vertexBuffer != null) {
 				this.vertexBuffer.bindBuffer();
 
-				int stride = this.format.getSize();
+				int stride = this.format.getNextOffset(); // TODO confirm getSize -> getNextOffset
 
 				int elementIndex = 0;
 				for(VertexFormatElement element : this.format.getElements()) {

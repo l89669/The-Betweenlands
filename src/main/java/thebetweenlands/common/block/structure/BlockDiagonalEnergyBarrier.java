@@ -53,7 +53,7 @@ public class BlockDiagonalEnergyBarrier extends Block implements IConnectedTextu
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
@@ -78,7 +78,7 @@ public class BlockDiagonalEnergyBarrier extends Block implements IConnectedTextu
     }
 
 	@Override
-    public EnumPushReaction getPushReaction(IBlockState state) {
+    public EnumPushReaction getMobilityFlag(IBlockState state) {
         return EnumPushReaction.BLOCK;
     }
 
@@ -201,7 +201,7 @@ public class BlockDiagonalEnergyBarrier extends Block implements IConnectedTextu
     }
     
 	@Override
-	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 		/*if (entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entity;
 			if (!player.isSpectator()) {

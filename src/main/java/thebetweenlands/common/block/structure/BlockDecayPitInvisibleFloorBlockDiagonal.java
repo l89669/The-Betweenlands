@@ -76,7 +76,7 @@ public class BlockDecayPitInvisibleFloorBlockDiagonal extends BlockHorizontal im
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public BlockRenderLayer getRenderLayer() {
+		public BlockRenderLayer getBlockLayer() {
 			return BlockRenderLayer.CUTOUT;
 		}
 

@@ -108,7 +108,7 @@ public class ItemGreatsword extends ItemBLSword implements IExtendedReach {
 								Math.toDegrees(Math.acos(part.getPositionVector().subtract(player.getPositionVector()).normalize().dotProduct(player.getLookVec()))),
 								Math.min(
 										Math.toDegrees(Math.acos(part.getPositionVector().subtract(player.getPositionEyes(1)).normalize().dotProduct(player.getLookVec()))),
-										Math.toDegrees(Math.acos(part.getPositionVector().add(0, part.height / 2, 0).subtract(player.getPositionEyes(1)).normalize().dotProduct(player.getLookVec())))
+										Math.toDegrees(Math.acos(part.getPositionVector().addVector((double) 0, (double) (part.height / 2), (double) 0).subtract(player.getPositionEyes(1)).normalize().dotProduct(player.getLookVec())))
 										)
 								);
 
@@ -118,7 +118,7 @@ public class ItemGreatsword extends ItemBLSword implements IExtendedReach {
 							double hitY = player.posY + player.getEyeHeight() + player.getLookVec().y / Math.sqrt(Math.pow(player.getLookVec().x, 2) + Math.pow(player.getLookVec().z, 2) + 0.1D) * distXZ;
 
 							if(hitY > part.getEntityBoundingBox().minY - 0.25D && hitY < part.getEntityBoundingBox().maxY + 0.25D) {
-								if(player.world.rayTraceBlocks(player.getPositionVector().add(0, player.getEyeHeight(), 0), part.getPositionVector().add(0, part.height / 2, 0), false, true, false) == null) {
+								if(player.world.rayTraceBlocks(player.getPositionVector().addVector((double) 0, (double) player.getEyeHeight(), (double) 0), part.getPositionVector().addVector((double) 0, (double) (part.height / 2), (double) 0), false, true, false) == null) {
 									if(!player.world.isRemote) {
 										//yikes
 										//Adjust attack speed such that the current attack strength becomes the same as the initial attack strength

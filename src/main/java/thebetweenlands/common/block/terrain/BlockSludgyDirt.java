@@ -53,7 +53,7 @@ public class BlockSludgyDirt extends Block {
 	}
 
 	@Override
-	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity){
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity){
 		if(entity instanceof IEntityBL == false) entity.setInWeb();
 	}
 
@@ -64,7 +64,7 @@ public class BlockSludgyDirt extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

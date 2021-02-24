@@ -34,9 +34,9 @@ public class ItemMisc extends Item implements ItemRegistry.IMultipleItemModelDef
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		try {
-			return "item.thebetweenlands." + IGenericItem.getFromStack(EnumItemMisc.class, stack).getTranslationKey();
+			return "item.thebetweenlands." + IGenericItem.getFromStack(EnumItemMisc.class, stack).getUnlocalizedName();
 		} catch (Exception e) {
 			return "item.thebetweenlands.unknown_generic";
 		}
@@ -118,7 +118,7 @@ public class ItemMisc extends Item implements ItemRegistry.IMultipleItemModelDef
 		}
 
 		@Override
-		public String getTranslationKey() {
+		public String getUnlocalizedName() {
 			return this.unlocalizedName;
 		}
 

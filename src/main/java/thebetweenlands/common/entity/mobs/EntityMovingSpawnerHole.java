@@ -155,7 +155,7 @@ public class EntityMovingSpawnerHole extends EntityMovingWallFace implements IMo
 	protected Entity createEntity(Vec3d holeBottom, double frontOffset, EnumFacing facing) {
 		Entity entity = new EntitySludgeWorm(this.world);
 		entity.setLocationAndAngles(holeBottom.x, holeBottom.y, holeBottom.z, facing.getHorizontalAngle(), 0);
-		entity.move(MoverType.SELF, facing.getXOffset() * 0.35D, facing == EnumFacing.UP ? 1 : 0, facing.getZOffset() * 0.35D);
+		entity.move(MoverType.SELF, facing.getFrontOffsetX() * 0.35D, facing == EnumFacing.UP ? 1 : 0, facing.getFrontOffsetZ() * 0.35D);
 		return entity;
 	}
 

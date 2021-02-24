@@ -106,7 +106,7 @@ public class EventWinter extends SeasonalEnvironmentEvent {
 							boolean hasSuitableNeighbourBlock = false;
 							PooledMutableBlockPos checkPos = PooledMutableBlockPos.retain();
 							for(EnumFacing dir : EnumFacing.HORIZONTALS) {
-								checkPos.setPos(pos.getX() + dir.getXOffset(), pos.getY(), pos.getZ() + dir.getZOffset());
+								checkPos.setPos(pos.getX() + dir.getFrontOffsetX(), pos.getY(), pos.getZ() + dir.getFrontOffsetZ());
 								if(world.isBlockLoaded(checkPos)) {
 									if(!hasSuitableNeighbourBlock) {
 										IBlockState neighourState = world.getBlockState(checkPos);

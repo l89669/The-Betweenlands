@@ -98,7 +98,7 @@ public class BLMaterial extends Material {
      * immobility and stop pistons.
      */
     @Override
-    public EnumPushReaction getPushReaction()
+    public EnumPushReaction getMobilityFlag()
     {
         return this.mobilityFlag;
     }

@@ -81,7 +81,7 @@ public class ItemMob extends Item {
 			}
 		}
 
-		if(!nbt.isEmpty()) {
+		if(!nbt.hasNoTags()) {
 			ItemStack stack = new ItemStack(this);
 
 			stack.setTagInfo("Entity", nbt);
@@ -185,14 +185,14 @@ public class ItemMob extends Item {
 		if(!world.isRemote) {
 			Entity entity = this.createCapturedEntity(world, pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ, stack);
 			if(entity != null) {
-				if(facing.getXOffset() != 0) {
-					entity.setPosition(entity.posX + facing.getXOffset() * entity.width * 0.5f, entity.posY, entity.posZ);
+				if(facing.getFrontOffsetX() != 0) {
+					entity.setPosition(entity.posX + facing.getFrontOffsetX() * entity.width * 0.5f, entity.posY, entity.posZ);
 				}
-				if(facing.getYOffset() < 0) {
+				if(facing.getFrontOffsetY() < 0) {
 					entity.setPosition(entity.posX, entity.posY - entity.height, entity.posZ);
 				}
-				if(facing.getZOffset() != 0) {
-					entity.setPosition(entity.posX, entity.posY, entity.posZ + facing.getZOffset() * entity.width * 0.5f);
+				if(facing.getFrontOffsetZ() != 0) {
+					entity.setPosition(entity.posX, entity.posY, entity.posZ + facing.getFrontOffsetZ() * entity.width * 0.5f);
 				}
 
 				if(world.getCollisionBoxes(entity, entity.getEntityBoundingBox()).isEmpty()) {
@@ -218,12 +218,12 @@ public class ItemMob extends Item {
 	}
 	
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		ResourceLocation id = this.getCapturedEntityId(stack);
 		if(id != null) {
-			return "entity." + id.getNamespace() + "." + id.getPath();
+			return "entity." + id.getResourceDomain() + "." + id.getResourcePath();
 		}
-		return super.getTranslationKey(stack);
+		return super.getUnlocalizedName(stack);
 	}
 
 	@Override

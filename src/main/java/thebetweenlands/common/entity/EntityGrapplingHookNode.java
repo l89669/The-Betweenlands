@@ -192,19 +192,19 @@ public class EntityGrapplingHookNode extends Entity implements IEntityAdditional
 						if(mountNode.nodeCount < mountNode.maxNodeCount) {
 							Vec3d connection = this.getConnectionToNext();
 							if(connection != null) {
-								Vec3d newPos = mountNode.getPositionVector().add(connection.scale(-0.5D)).add(0, 0.1D, 0);
+								Vec3d newPos = mountNode.getPositionVector().add(connection.scale(-0.5D)).addVector((double) 0, 0.1D, (double) 0);
 
-								RayTraceResult result = this.world.rayTraceBlocks(mountNode.getPositionVector().add(0, mountNode.height, 0), newPos, false);
+								RayTraceResult result = this.world.rayTraceBlocks(mountNode.getPositionVector().addVector((double) 0, (double) mountNode.height, (double) 0), newPos, false);
 
-								if(result != null && result.typeOfHit == Type.BLOCK && result.hitVec.squareDistanceTo(mountNode.getPositionVector().add(0, mountNode.height, 0)) < newPos.squareDistanceTo(mountNode.getPositionVector().add(0, mountNode.height, 0))) {
-									newPos = result.hitVec.add(result.hitVec.subtract(this.getPositionVector().add(0, this.height, 0)).normalize().scale(0.1D));
+								if(result != null && result.typeOfHit == Type.BLOCK && result.hitVec.squareDistanceTo(mountNode.getPositionVector().addVector((double) 0, (double) mountNode.height, (double) 0)) < newPos.squareDistanceTo(mountNode.getPositionVector().addVector((double) 0, (double) mountNode.height, (double) 0))) {
+									newPos = result.hitVec.add(result.hitVec.subtract(this.getPositionVector().addVector((double) 0, (double) this.height, (double) 0)).normalize().scale(0.1D));
 								}
 
 								EntityGrapplingHookNode newNode = this.extendRope(mountNode, newPos.x, newPos.y, newPos.z);
 
 								if(newNode != null) {
-									newNode.setCurrentRopeLength((float) connection.length() / 4);
-									this.setCurrentRopeLength((float) connection.length() / 4);
+									newNode.setCurrentRopeLength((float) connection.lengthVector() / 4);
+									this.setCurrentRopeLength((float) connection.lengthVector() / 4);
 
 									if(mountNode.getCurrentRopeLength() < this.getDefaultRopeLength() - 0.05F) {
 										//TODO This should only happen when reeling in
@@ -288,10 +288,10 @@ public class EntityGrapplingHookNode extends Entity implements IEntityAdditional
 				this.constrainMotion(prevNode, prevNode, 0.99D, -Double.MAX_VALUE, 0.1D);
 			}
 
-			Vec3d diff = prevNode.getPositionVector().add(0, prevNode.height, 0).subtract(this.getPositionVector().add(0, this.height, 0));
+			Vec3d diff = prevNode.getPositionVector().addVector((double) 0, (double) prevNode.height, (double) 0).subtract(this.getPositionVector().addVector((double) 0, (double) this.height, (double) 0));
 
-			if(diff.length() > this.getCurrentRopeLength()) {
-				double correction = diff.length() - this.getCurrentRopeLength();
+			if(diff.lengthVector() > this.getCurrentRopeLength()) {
+				double correction = diff.lengthVector() - this.getCurrentRopeLength();
 
 				Vec3d forceVec = diff.normalize().scale(correction * 0.5D);
 
@@ -361,15 +361,15 @@ public class EntityGrapplingHookNode extends Entity implements IEntityAdditional
 	protected void updateWeight() {
 		final double weightRopeLength = 2D;
 
-		Vec3d tether = this.getPositionVector().add(0, this.height, 0);
+		Vec3d tether = this.getPositionVector().addVector((double) 0, (double) this.height, (double) 0);
 
 		if(this.weightPos == null) {
-			this.prevWeightPos = this.weightPos = tether.add(0, -weightRopeLength, 0);
+			this.prevWeightPos = this.weightPos = tether.addVector((double) 0, -weightRopeLength, (double) 0);
 		}
 
 		this.prevWeightPos = this.weightPos;
 
-		this.weightPos = this.weightPos.add(0, -0.5D, 0);
+		this.weightPos = this.weightPos.addVector((double) 0, -0.5D, (double) 0);
 
 		if(this.weightPos.distanceTo(tether) > weightRopeLength) {
 			this.weightPos = tether.add(this.weightPos.subtract(tether).normalize().scale(weightRopeLength));
@@ -385,7 +385,7 @@ public class EntityGrapplingHookNode extends Entity implements IEntityAdditional
 		if(tetherPoint.distanceTo(nextPoint) >= currentRopeLength) {
 			Vec3d constrainedPoint = nextPoint.subtract(tetherPoint).normalize();
 
-			constrainedPoint = constrainedPoint.scale(currentRopeLength).add(tetherPoint.x, tetherPoint.y, tetherPoint.z);
+			constrainedPoint = constrainedPoint.scale(currentRopeLength).addVector(tetherPoint.x, tetherPoint.y, tetherPoint.z);
 
 			Vec3d fwd = tetherPoint.subtract(constrainedPoint).normalize();
 

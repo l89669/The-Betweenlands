@@ -91,7 +91,7 @@ public class BlockRope extends Block implements ICustomItemBlock {
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

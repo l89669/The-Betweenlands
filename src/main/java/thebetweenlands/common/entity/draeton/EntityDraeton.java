@@ -391,7 +391,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 
 			//Ensure that the part is within valid range, otherwise puller entities may become immediately unloaded after spawning
 			Vec3d diff = partPos.subtract(pos);
-			if(diff.length() > this.getMaxTetherLength(part)) {
+			if(diff.lengthVector() > this.getMaxTetherLength(part)) {
 				partPos = pos.add(diff.normalize().scale(this.getMaxTetherLength(part)));
 			}
 
@@ -544,7 +544,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 		this.lerpYaw = this.rotationYaw;
 		this.lerpPitch = this.rotationPitch;
 
-		this.prevBalloonPos = this.balloonPos = this.getPositionVector().add(0, 2, 0);
+		this.prevBalloonPos = this.balloonPos = this.getPositionVector().addVector(0, 2, 0);
 
 		if(!world.isRemote) {
 			this.anchorPhysicsPart = new DraetonPhysicsPart(DraetonPhysicsPart.Type.ANCHOR, this, this.nextPhysicsPartId++, 0);
@@ -1050,7 +1050,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 
 	protected void updatePartPositions() {
 		if(this.world.isRemote) {
-			this.balloonMotion = this.balloonMotion.add(0, 0.125f, 0).scale(0.9f);
+			this.balloonMotion = this.balloonMotion.addVector((double) 0, (double) 0.125f, (double) 0).scale(0.9f);
 
 			this.balloonPos = this.balloonPos.add(this.balloonMotion);
 
@@ -1062,10 +1062,10 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 
 				float tetherLength = 2.0f + (float)Math.sin(this.ticksExisted * 0.1f) * 0.05f;
 
-				if(diff.length() > 6.0f) {
-					this.balloonPos = this.getPositionVector().add(0, 1, 0);
-				} else if(diff.length() > tetherLength) {
-					Vec3d correction = diff.normalize().scale(-(diff.length() - tetherLength));
+				if(diff.lengthVector() > 6.0f) {
+					this.balloonPos = this.getPositionVector().addVector((double) 0, (double) 1, (double) 0);
+				} else if(diff.lengthVector() > tetherLength) {
+					Vec3d correction = diff.normalize().scale(-(diff.lengthVector() - tetherLength));
 					this.balloonPos = this.balloonPos.add(correction.scale(0.75f));
 
 					this.balloonMotion = this.balloonMotion.add(correction.scale(1.25f));
@@ -1073,7 +1073,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 			}
 		} else {
 			this.balloonMotion = Vec3d.ZERO;
-			this.prevBalloonPos = this.balloonPos = this.getPositionVector().add(0, 2.5f, 0);
+			this.prevBalloonPos = this.balloonPos = this.getPositionVector().addVector((double) 0, (double) 2.5f, (double) 0);
 		}
 
 		//Set leakage part positions
@@ -1087,22 +1087,22 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 			this.leakageParts[i].setPosition(leakagePos.x, leakagePos.y - this.leakageParts[i].height / 2.0f, leakagePos.z);
 		}
 
-		Vec3d guiPos = this.getRotatedCarriagePoint(new Vec3d(0, 0.05D, 0.25D), 1).add(this.posX, this.posY, this.posZ);
+		Vec3d guiPos = this.getRotatedCarriagePoint(new Vec3d(0, 0.05D, 0.25D), 1).addVector(this.posX, this.posY, this.posZ);
 		this.guiPart.setPosition(guiPos.x, guiPos.y, guiPos.z);
 
-		Vec3d upgradePos1 = this.getRotatedCarriagePoint(this.getUpgradePoint(0, 0.25f), 1).add(this.posX, this.posY - this.upgradePart1.height + 0.05f, this.posZ);
+		Vec3d upgradePos1 = this.getRotatedCarriagePoint(this.getUpgradePoint(0, 0.25f), 1).addVector(this.posX, this.posY - this.upgradePart1.height + 0.05f, this.posZ);
 		this.upgradePart1.setPosition(upgradePos1.x, upgradePos1.y, upgradePos1.z);
 
-		Vec3d upgradePos2 = this.getRotatedCarriagePoint(this.getUpgradePoint(1, 0.25f), 1).add(this.posX, this.posY - this.upgradePart2.height + 0.05f, this.posZ);
+		Vec3d upgradePos2 = this.getRotatedCarriagePoint(this.getUpgradePoint(1, 0.25f), 1).addVector(this.posX, this.posY - this.upgradePart2.height + 0.05f, this.posZ);
 		this.upgradePart2.setPosition(upgradePos2.x, upgradePos2.y, upgradePos2.z);
 
-		Vec3d upgradePos3 = this.getRotatedCarriagePoint(this.getUpgradePoint(2, 0.25f), 1).add(this.posX, this.posY - this.upgradePart3.height + 0.05f, this.posZ);
+		Vec3d upgradePos3 = this.getRotatedCarriagePoint(this.getUpgradePoint(2, 0.25f), 1).addVector(this.posX, this.posY - this.upgradePart3.height + 0.05f, this.posZ);
 		this.upgradePart3.setPosition(upgradePos3.x, upgradePos3.y, upgradePos3.z);
 
-		Vec3d upgradePos4 = this.getRotatedCarriagePoint(this.getUpgradePoint(3, 0.25f), 1).add(this.posX, this.posY - this.upgradePart4.height + 0.05f, this.posZ);
+		Vec3d upgradePos4 = this.getRotatedCarriagePoint(this.getUpgradePoint(3, 0.25f), 1).addVector(this.posX, this.posY - this.upgradePart4.height + 0.05f, this.posZ);
 		this.upgradePart4.setPosition(upgradePos4.x, upgradePos4.y, upgradePos4.z);
 
-		Vec3d anchorPos = this.getRotatedCarriagePoint(new Vec3d(0.0f, 0.525f, 0.975f), 1).add(this.posX, this.posY, this.posZ);
+		Vec3d anchorPos = this.getRotatedCarriagePoint(new Vec3d(0.0f, 0.525f, 0.975f), 1).addVector(this.posX, this.posY, this.posZ);
 		this.upgradeAnchorPart.setPosition(anchorPos.x, anchorPos.y - this.upgradeAnchorPart.height / 2, anchorPos.z);
 
 		Vec3d burnerPos = this.getBalloonPos(1).add(this.getRotatedBalloonPoint(new Vec3d(0, -0.5f, 0), 1));
@@ -1111,13 +1111,13 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 		Matrix balloonRot = new Matrix();
 		balloonRot.rotate((float)-Math.toRadians(this.rotationYaw), 0, 1, 0);
 
-		Vec3d balloonFrontPos = balloonRot.transform(new Vec3d(0, 3.15f, 1.5f)).add(this.posX, this.posY, this.posZ);
+		Vec3d balloonFrontPos = balloonRot.transform(new Vec3d(0, 3.15f, 1.5f)).addVector(this.posX, this.posY, this.posZ);
 		this.balloonFront.setPosition(balloonFrontPos.x, balloonFrontPos.y, balloonFrontPos.z);
 
-		Vec3d balloonMiddlePos = balloonRot.transform(new Vec3d(0, 3.15f, 0)).add(this.posX, this.posY, this.posZ);
+		Vec3d balloonMiddlePos = balloonRot.transform(new Vec3d(0, 3.15f, 0)).addVector(this.posX, this.posY, this.posZ);
 		this.balloonMiddle.setPosition(balloonMiddlePos.x, balloonMiddlePos.y, balloonMiddlePos.z);
 
-		Vec3d balloonBackPos = balloonRot.transform(new Vec3d(0, 3.15f, -1.5f)).add(this.posX, this.posY, this.posZ);
+		Vec3d balloonBackPos = balloonRot.transform(new Vec3d(0, 3.15f, -1.5f)).addVector(this.posX, this.posY, this.posZ);
 		this.balloonBack.setPosition(balloonBackPos.x, balloonBackPos.y, balloonBackPos.z);
 	}
 
@@ -1402,7 +1402,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 		}
 
 		if(this.world.isRemote && !this.canPassengerSteer()) {
-			this.balloonPos = this.balloonPos.add(this.posX - startX, this.posY - startY, this.posZ - startZ);
+			this.balloonPos = this.balloonPos.addVector(this.posX - startX, this.posY - startY, this.posZ - startZ);
 		}
 	}
 
@@ -1525,7 +1525,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 
 						Vec3d diff = pullerPos.subtract(otherPullerPos);
 
-						double dist = diff.length();
+						double dist = diff.lengthVector();
 
 						float minDist = 1.5f;
 
@@ -1566,7 +1566,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 
 			Vec3d diff = tether.subtract(pos);
 
-			double dist = diff.length();
+			double dist = diff.lengthVector();
 
 			float tetherLength = this.getMaxTetherLength(part);
 
@@ -1645,7 +1645,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 			Vec3d tether = new Vec3d(entity.posX, entity.posY, entity.posZ);
 			Vec3d pos = this.getPositionVector().add(this.getPullPoint(part, 1));
 			Vec3d diff = tether.subtract(pos);
-			if(diff.length() > this.getMaxTetherLength(part)) {
+			if(diff.lengthVector() > this.getMaxTetherLength(part)) {
 				return true;
 			}
 		}
@@ -1817,11 +1817,11 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 			break;
 		case 2:
 			dir = new Vec3d((this.world.rand.nextFloat() - 0.5f) * 1.5f, 0, (this.world.rand.nextFloat() - 0.5f) * 4).subtract(0, -radius, 0).normalize();
-			pos = dir.scale(radius).add(0, 1.06f - radius, 0);
+			pos = dir.scale(radius).addVector(0, 1.06f - radius, 0);
 			break;
 		case 3:
 			dir = new Vec3d((this.world.rand.nextFloat() - 0.5f) * 1.5f, 0, (this.world.rand.nextFloat() - 0.5f) * 2.5f).subtract(0, -radius, 0).normalize();
-			pos = dir.scale(radius).add(0, -0.05f - radius, 0);
+			pos = dir.scale(radius).addVector(0, -0.05f - radius, 0);
 			dir = new Vec3d(-dir.x, -dir.y, -dir.z);
 			break;
 		case 4:
@@ -1879,7 +1879,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 			part.prevZ = part.z;
 		}
 
-		this.prevBalloonPos = this.balloonPos = this.balloonPos.add(dx, dy, dz);
+		this.prevBalloonPos = this.balloonPos = this.balloonPos.addVector(dx, dy, dz);
 
 		//Update multipart positions
 		this.updatePartPositions();
@@ -2063,7 +2063,7 @@ public class EntityDraeton extends Entity implements IEntityMultiPart, IEntityAd
 	}
 
 	protected void dropFurnaceContent(int index) {
-		Vec3d dropPos = this.getRotatedCarriagePoint(this.getUpgradePoint(index, 0.25f), 1).add(this.posX, this.posY, this.posZ);
+		Vec3d dropPos = this.getRotatedCarriagePoint(this.getUpgradePoint(index, 0.25f), 1).addVector(this.posX, this.posY, this.posZ);
 
 		IInventory furnaceInv = this.getFurnace(index);
 		for(int i = 0; i < furnaceInv.getSizeInventory(); i++) {

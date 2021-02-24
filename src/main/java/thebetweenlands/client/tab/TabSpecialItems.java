@@ -10,7 +10,7 @@ public class TabSpecialItems extends CreativeTabBetweenlands {
 	}
 
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getTabIconItem() {
 		return new ItemStack(ItemRegistry.ASTATOS);
 	}
 }

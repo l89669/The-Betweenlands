@@ -157,7 +157,7 @@ public class ExtendedReachHandler {
                 calcdist = result.hitVec.distanceTo(viewPos);
             }
             Vec3d startVec = viewEntity.getLook(1.0F);
-            Vec3d endVec = viewPos.add(startVec.x * dist, startVec.y * dist, startVec.z * dist);
+            Vec3d endVec = viewPos.addVector(startVec.x * dist, startVec.y * dist, startVec.z * dist);
 
             Entity targetEntity = null;
             Vec3d hitVec = null;

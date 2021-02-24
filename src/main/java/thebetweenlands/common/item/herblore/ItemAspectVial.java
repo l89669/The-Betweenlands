@@ -88,7 +88,7 @@ public class ItemAspectVial extends Item implements ITintedItem, ItemRegistry.IM
     }
 
     @Override
-    public String getTranslationKey(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack) {
         try {
             switch (stack.getItemDamage()) {
                 case 0:

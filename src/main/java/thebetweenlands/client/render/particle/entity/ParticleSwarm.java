@@ -109,7 +109,7 @@ public class ParticleSwarm extends ParticleAnimated implements IParticleSpriteRe
 
 		double ahead = this.particleScale * 0.2f * 0.125f * 8;
 
-		BlockPos pos = new BlockPos(this.posX + dirX * ahead - this.face.getXOffset() * 0.1f, this.posY + dirY * ahead - this.face.getYOffset() * 0.1f, this.posZ + dirZ * ahead - this.face.getZOffset() * 0.1f);
+		BlockPos pos = new BlockPos(this.posX + dirX * ahead - this.face.getFrontOffsetX() * 0.1f, this.posY + dirY * ahead - this.face.getFrontOffsetY() * 0.1f, this.posZ + dirZ * ahead - this.face.getFrontOffsetZ() * 0.1f);
 
 		IBlockState state = this.world.getBlockState(pos);
 
@@ -193,9 +193,9 @@ public class ParticleSwarm extends ParticleAnimated implements IParticleSpriteRe
 		if(this.particleAngle != 0.0F) {
 			float angle = this.particleAngle + (this.particleAngle - this.prevParticleAngle) * partialTicks;
 			float cos = MathHelper.cos(angle * 0.5F);
-			float rdx = MathHelper.sin(angle * 0.5F) * this.face.getXOffset();
-			float rdy = MathHelper.sin(angle * 0.5F) * this.face.getYOffset();
-			float rdz = MathHelper.sin(angle * 0.5F) * this.face.getZOffset();
+			float rdx = MathHelper.sin(angle * 0.5F) * this.face.getFrontOffsetX();
+			float rdy = MathHelper.sin(angle * 0.5F) * this.face.getFrontOffsetY();
+			float rdz = MathHelper.sin(angle * 0.5F) * this.face.getFrontOffsetZ();
 
 			float dotrdrd = cos * cos - dot(rdx, rdy, rdz, rdx, rdy, rdz);
 

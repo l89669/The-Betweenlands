@@ -722,7 +722,7 @@ public class BlockRegistry {
     public static final Block PALE_GRASS = new BlockSludgeDungeonPlant() {
     	@Override
         @SideOnly(Side.CLIENT)
-        public BlockRenderLayer getRenderLayer() {
+        public BlockRenderLayer getBlockLayer() {
             return BlockRenderLayer.TRANSLUCENT;
         }
     }.setSickleDrop(EnumItemPlantDrop.PALE_GRASS_BLADES.create(1)).setReplaceable(true);
@@ -888,7 +888,7 @@ public class BlockRegistry {
 
     public static void registerBlock(String name, Block block) {
         BLOCKS.add(block);
-        block.setRegistryName(ModInfo.ID, name).setTranslationKey(ModInfo.ID + "." + name);
+        block.setRegistryName(ModInfo.ID, name).setUnlocalizedName(ModInfo.ID + "." + name);
 
         ItemBlock item = null;
         if (block instanceof ICustomItemBlock)
@@ -897,11 +897,11 @@ public class BlockRegistry {
             item = new ItemBlock(block);
         if(item != null) {
         	ITEM_BLOCKS.add(item);
-        	item.setRegistryName(ModInfo.ID, name).setTranslationKey(ModInfo.ID + "." + name);
+        	item.setRegistryName(ModInfo.ID, name).setUnlocalizedName(ModInfo.ID + "." + name);
         	
         	if (BetweenlandsConfig.DEBUG.debug && FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-                if (block.getCreativeTab() == null)
-                    TheBetweenlands.logger.warn(String.format("Block %s doesn't have a creative tab", block.getTranslationKey()));
+                if (block.getCreativeTabToDisplayOn() == null)
+                    TheBetweenlands.logger.warn(String.format("Block %s doesn't have a creative tab", block.getUnlocalizedName()));
             }
         }
     }
@@ -934,7 +934,7 @@ public class BlockRegistry {
 	                ISubtypeItemBlockModelDefinition subtypeBlock = (ISubtypeItemBlockModelDefinition) block;
 	                for (int i = 0; i < subtypeBlock.getSubtypeNumber(); i++) {
 	                    int meta = subtypeBlock.getSubtypeMeta(i);
-	                    ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(name.getNamespace() + ":" + String.format(subtypeBlock.getSubtypeName(meta), name.getPath()), "inventory"));
+	                    ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(name.getResourceDomain() + ":" + String.format(subtypeBlock.getSubtypeName(meta), name.getResourcePath()), "inventory"));
 	                }
 	            } else {
 	                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(name, "inventory"));

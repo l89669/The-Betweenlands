@@ -48,7 +48,7 @@ public class ParticleBeam extends Particle {
 
 	public static void buildBeam(double rx, double ry, double rz, Vec3d end, float scale, float texUOffset, float texUScale,
 			float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ, BeamVertexConsumer consumer) {
-		double len = end.length();
+		double len = end.lengthVector();
 
 		Vec3d v1 = new Vec3d((double)(-rotationX - rotationXY), (double)(-rotationZ), (double)(-rotationYZ - rotationXZ));
 		Vec3d v2 = new Vec3d((double)(-rotationX + rotationXY), (double)(rotationZ), (double)(-rotationYZ + rotationXZ));
@@ -57,7 +57,7 @@ public class ParticleBeam extends Particle {
 
 		Vec3d perpendicularDir = end.crossProduct(facing).normalize();
 
-		if(perpendicularDir.length() < 1.0E-4D) {
+		if(perpendicularDir.lengthVector() < 1.0E-4D) {
 			//Special case where facing and particle direction perfectly match.
 			//Instead of using the crossproduct we can just directly use the v1 and v2 vectors
 			//to get the correct result

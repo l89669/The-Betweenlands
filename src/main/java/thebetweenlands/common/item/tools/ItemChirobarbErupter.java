@@ -96,7 +96,7 @@ public class ItemChirobarbErupter extends Item {
 					double closestNearbyDstSq = Double.MAX_VALUE;
 
 					for(Entity nearby : nearbyEntities) {
-						Vec3d pos = nearby.getPositionVector().add(0, nearby.height / 2, 0);
+						Vec3d pos = nearby.getPositionVector().addVector((double) 0, (double) (nearby.height / 2), (double) 0);
 
 						Vec3d diff = pos.subtract(entity.getPositionEyes(1));
 						double dstSq = diff.lengthSquared();

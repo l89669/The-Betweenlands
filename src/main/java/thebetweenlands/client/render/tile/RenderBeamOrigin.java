@@ -58,21 +58,21 @@ public class RenderBeamOrigin extends TileEntitySpecialRenderer<TileEntityBeamOr
 		double h = 1.65D;
 		double w = 0.45D;
 
-		Vec3d v0 = new Vec3d(-w, 0, 0).add(w, 1, 0);
-		Vec3d v1 = new Vec3d(0, h, w).add(w, 1, 0);
-		Vec3d v2 = new Vec3d(0, h, -w).add(w, 1, 0);
+		Vec3d v0 = new Vec3d(-w, 0, 0).addVector(w, (double) 1, (double) 0);
+		Vec3d v1 = new Vec3d(0, h, w).addVector(w, (double) 1, (double) 0);
+		Vec3d v2 = new Vec3d(0, h, -w).addVector(w, (double) 1, (double) 0);
 
 		Vec3d mid = Vec3d.ZERO;
 
 		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1, mid), m.transformVec(v2, mid), visibility, partialTicks);
-		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1.add(-w*2, 0, 0), mid), m.transformVec(v2.add(0, 0, w*2), mid), visibility, partialTicks);
-		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1.add(-w*2, 0, -w*2), mid), m.transformVec(v2.add(-w*2, 0, w*2), mid), visibility, partialTicks);
-		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1.add(0, 0, -w*2), mid), m.transformVec(v2.add(-w*2, 0, 0), mid), visibility, partialTicks);
+		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1.addVector(-w*2, (double) 0, (double) 0), mid), m.transformVec(v2.addVector((double) 0, (double) 0, w*2), mid), visibility, partialTicks);
+		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1.addVector(-w*2, (double) 0, -w*2), mid), m.transformVec(v2.addVector(-w*2, (double) 0, w*2), mid), visibility, partialTicks);
+		this.renderMirrorTri(te, m.transformVec(v0, mid), m.transformVec(v1.addVector((double) 0, (double) 0, -w*2), mid), m.transformVec(v2.addVector(-w*2, (double) 0, (double) 0), mid), visibility, partialTicks);
 
 		Vec3d p0 = m.transformVec(v1, mid);
-		Vec3d p1 = m.transformVec(v1.add(-w*2, 0, 0), mid);
-		Vec3d p2 = m.transformVec(v1.add(-w*2, 0, -w*2), mid);
-		Vec3d p3 = m.transformVec(v1.add(0, 0, -w*2), mid);
+		Vec3d p1 = m.transformVec(v1.addVector(-w*2, (double) 0, (double) 0), mid);
+		Vec3d p2 = m.transformVec(v1.addVector(-w*2, (double) 0, -w*2), mid);
+		Vec3d p3 = m.transformVec(v1.addVector((double) 0, (double) 0, -w*2), mid);
 
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferBuilder = tessellator.getBuffer();

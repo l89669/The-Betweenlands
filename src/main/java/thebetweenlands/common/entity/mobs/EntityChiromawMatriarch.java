@@ -756,7 +756,7 @@ public class EntityChiromawMatriarch extends EntityFlyingMob implements IEntityB
 					Vec3d targetVector = new Vec3d(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ);
 					Vec3d chiromawVectorToTarget = new Vec3d(largeChiromaw.posX, largeChiromaw.posY, largeChiromaw.posZ).subtract(targetVector);
 					double height = chiromawVectorToTarget.y;
-					double distance = chiromawVectorToTarget.length();
+					double distance = chiromawVectorToTarget.lengthVector();
 					double angle = MathHelper.atan2(height, distance) * (180D / Math.PI);
 					EntityBLArrow arrow = new EntityBLArrow(world, largeChiromaw);
 					arrow.setType(EnumArrowType.CHIROMAW_BARB);

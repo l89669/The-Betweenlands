@@ -107,7 +107,7 @@ public class AdvancedItemLoaderExtension extends LoaderExtension {
 		}
 
 		ResourceLocation childModel = new ResourceLocation(sourceItem);
-		ModelResourceLocation sourceLocation = new ModelResourceLocation(new ResourceLocation(childModel.getNamespace(), childModel.getPath()), "inventory");
+		ModelResourceLocation sourceLocation = new ModelResourceLocation(new ResourceLocation(childModel.getResourceDomain(), childModel.getResourcePath()), "inventory");
 
 		return new ModelContext(sourceLocation, location, customData, inheritOverrides, shouldCacheOverrides);
 	}

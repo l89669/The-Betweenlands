@@ -138,7 +138,7 @@ public class WorldMobSpawner extends AreaMobSpawner {
 
 	@Override
 	protected BlockPos getRandomSpawnPosition(World world, ChunkPos chunkPos) {
-		Chunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
+		Chunk chunk = world.getChunkFromChunkCoords(chunkPos.x, chunkPos.z);
 		int x = chunkPos.x * 16 + world.rand.nextInt(16);
 		int z = chunkPos.z * 16 + world.rand.nextInt(16);
 		int y;

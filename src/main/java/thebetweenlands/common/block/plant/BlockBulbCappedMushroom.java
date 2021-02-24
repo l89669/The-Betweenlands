@@ -44,7 +44,7 @@ public class BlockBulbCappedMushroom extends BlockMushroomBetweenlands {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 }

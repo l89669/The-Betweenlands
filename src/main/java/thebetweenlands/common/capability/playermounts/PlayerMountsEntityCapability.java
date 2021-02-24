@@ -73,7 +73,7 @@ public class PlayerMountsEntityCapability extends EntityCapability<PlayerMountsE
 				}
 			}
 
-			if(!passengers.isEmpty()) {
+			if(!passengers.hasNoTags()) {
 				nbt.setTag("PlayerPassengers", passengers);
 			}
 		}

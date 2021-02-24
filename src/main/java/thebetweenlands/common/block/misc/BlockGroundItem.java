@@ -144,7 +144,7 @@ public class BlockGroundItem extends Block implements BlockRegistry.ICustomItemB
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

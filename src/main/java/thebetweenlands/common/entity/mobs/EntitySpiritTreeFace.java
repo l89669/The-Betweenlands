@@ -231,7 +231,7 @@ public abstract class EntitySpiritTreeFace extends EntityMovingWallFace {
 			EnumFacing facing = this.getFacing();
 
 			EntitySapSpit spit = new EntitySapSpit(this.world, this, this.spitDamage);
-			spit.setPosition(this.posX + facing.getXOffset() * (this.width / 2 + 0.1F), this.posY + this.height / 2.0F + facing.getYOffset() * (this.height / 2 + 0.1F), this.posZ + facing.getZOffset() * (this.width / 2 + 0.1F));
+			spit.setPosition(this.posX + facing.getFrontOffsetX() * (this.width / 2 + 0.1F), this.posY + this.height / 2.0F + facing.getFrontOffsetY() * (this.height / 2 + 0.1F), this.posZ + facing.getFrontOffsetZ() * (this.width / 2 + 0.1F));
 
 			double dx = target.posX - spit.posX;
 			double dy = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - spit.posY;

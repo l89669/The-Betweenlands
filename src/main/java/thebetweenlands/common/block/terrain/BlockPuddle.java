@@ -84,10 +84,10 @@ public class BlockPuddle extends Block implements ITintedBlock, IStateMappedBloc
 		PooledMutableBlockPos offsetDown = PooledMutableBlockPos.retain();
 
 		for(EnumFacing facing : EnumFacing.HORIZONTALS) {
-			offset.setPos(pos.getX() + facing.getXOffset(), pos.getY(), pos.getZ() + facing.getZOffset());
+			offset.setPos(pos.getX() + facing.getFrontOffsetX(), pos.getY(), pos.getZ() + facing.getFrontOffsetZ());
 			IBlockState offsetState = worldIn.getBlockState(offset);
 
-			offsetDown.setPos(pos.getX() + facing.getXOffset(), pos.getY() - 1, pos.getZ() + facing.getZOffset());
+			offsetDown.setPos(pos.getX() + facing.getFrontOffsetX(), pos.getY() - 1, pos.getZ() + facing.getFrontOffsetZ());
 			IBlockState offsetDownState = worldIn.getBlockState(offsetDown);
 
 			PropertyBool prop;
@@ -151,7 +151,7 @@ public class BlockPuddle extends Block implements ITintedBlock, IStateMappedBloc
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
@@ -250,7 +250,7 @@ public class BlockPuddle extends Block implements ITintedBlock, IStateMappedBloc
 	}
 
 	@Override
-	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if(entityIn.world.isRemote && entityIn instanceof EntityPlayer && entityIn.posY <= pos.getY() + 0.01f && entityIn.ticksExisted % 5 == 0) {
 			float strength = MathHelper.sqrt(entityIn.motionX * entityIn.motionX * 0.2D + entityIn.motionY * entityIn.motionY + entityIn.motionZ * entityIn.motionZ * 0.2D) * 0.2f;
 

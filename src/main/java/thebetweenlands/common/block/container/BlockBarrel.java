@@ -128,7 +128,7 @@ public class BlockBarrel extends BasicBlock implements ITileEntityProvider, ICus
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byIndex(meta);
+		EnumFacing facing = EnumFacing.getFront(meta);
 
 		if (facing.getAxis() == EnumFacing.Axis.Y) {
 			facing = EnumFacing.NORTH;
@@ -139,7 +139,7 @@ public class BlockBarrel extends BasicBlock implements ITileEntityProvider, ICus
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

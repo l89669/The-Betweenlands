@@ -102,11 +102,11 @@ public abstract class EntityClimberBase extends EntityCreature implements IEntit
 				double maxDist = 0;
 
 				for(EnumFacing facing : EnumFacing.VALUES) {
-					double posEntity = Math.abs(facing.getXOffset()) * this.posX + Math.abs(facing.getYOffset()) * this.posY + Math.abs(facing.getZOffset()) * this.posZ;
-					double posPath = Math.abs(facing.getXOffset()) * point.x + Math.abs(facing.getYOffset()) * point.y + Math.abs(facing.getZOffset()) * point.z;
+					double posEntity = Math.abs(facing.getFrontOffsetX()) * this.posX + Math.abs(facing.getFrontOffsetY()) * this.posY + Math.abs(facing.getFrontOffsetZ()) * this.posZ;
+					double posPath = Math.abs(facing.getFrontOffsetX()) * point.x + Math.abs(facing.getFrontOffsetY()) * point.y + Math.abs(facing.getFrontOffsetZ()) * point.z;
 
 					double distSigned = posPath + 0.5f - posEntity;
-					if(distSigned * (facing.getXOffset() + facing.getYOffset() + facing.getZOffset()) > 0) {
+					if(distSigned * (facing.getFrontOffsetX() + facing.getFrontOffsetY() + facing.getFrontOffsetZ()) > 0) {
 						double dist = Math.abs(distSigned) - (facing.getAxis().isHorizontal() ? this.width / 2 : (facing == EnumFacing.DOWN ? 0 : this.height));
 
 						if(dist > maxDist) {
@@ -139,7 +139,7 @@ public abstract class EntityClimberBase extends EntityCreature implements IEntit
 				continue;
 			}
 
-			List<AxisAlignedBB> collisionBoxes = this.world.getCollisionBoxes(this, entityBox.grow(0.2f).expand(facing.getXOffset() * stickingDistance, facing.getYOffset() * stickingDistance, facing.getZOffset() * stickingDistance));
+			List<AxisAlignedBB> collisionBoxes = this.world.getCollisionBoxes(this, entityBox.grow(0.2f).expand(facing.getFrontOffsetX() * stickingDistance, facing.getFrontOffsetY() * stickingDistance, facing.getFrontOffsetZ() * stickingDistance));
 
 			double closestDst = Double.MAX_VALUE;
 
@@ -147,15 +147,15 @@ public abstract class EntityClimberBase extends EntityCreature implements IEntit
 				switch(facing) {
 				case EAST:
 				case WEST:
-					closestDst = Math.min(closestDst, Math.abs(entityBox.calculateXOffset(collisionBox, -facing.getXOffset() * stickingDistance)));
+					closestDst = Math.min(closestDst, Math.abs(entityBox.calculateXOffset(collisionBox, -facing.getFrontOffsetX() * stickingDistance)));
 					break;
 				case UP:
 				case DOWN:
-					closestDst = Math.min(closestDst, Math.abs(entityBox.calculateYOffset(collisionBox, -facing.getYOffset() * stickingDistance)));
+					closestDst = Math.min(closestDst, Math.abs(entityBox.calculateYOffset(collisionBox, -facing.getFrontOffsetY() * stickingDistance)));
 					break;
 				case NORTH:
 				case SOUTH:
-					closestDst = Math.min(closestDst, Math.abs(entityBox.calculateZOffset(collisionBox, -facing.getZOffset() * stickingDistance)));
+					closestDst = Math.min(closestDst, Math.abs(entityBox.calculateZOffset(collisionBox, -facing.getFrontOffsetZ() * stickingDistance)));
 					break;
 				}
 			}
@@ -166,7 +166,7 @@ public abstract class EntityClimberBase extends EntityCreature implements IEntit
 			}
 
 			if(closestDst < Double.MAX_VALUE) {
-				weighting = weighting.add(new Vec3d(facing.getXOffset(), facing.getYOffset(), facing.getZOffset()).scale(1 - Math.min(closestDst, stickingDistance) / stickingDistance));
+				weighting = weighting.add(new Vec3d(facing.getFrontOffsetX(), facing.getFrontOffsetY(), facing.getFrontOffsetZ()).scale(1 - Math.min(closestDst, stickingDistance) / stickingDistance));
 			}
 		}
 
@@ -174,7 +174,7 @@ public abstract class EntityClimberBase extends EntityCreature implements IEntit
 			return Pair.of(EnumFacing.DOWN, new Vec3d(0, -1, 0));
 		}
 
-		return Pair.of(closestFacing, weighting.normalize().add(0, -0.001f, 0).normalize());
+		return Pair.of(closestFacing, weighting.normalize().addVector(0, -0.001f, 0).normalize());
 	}
 
 	public static class Orientation {
@@ -266,7 +266,7 @@ public abstract class EntityClimberBase extends EntityCreature implements IEntit
 	protected void updateOffsetsAndOrientation() {
 		Vec3d p = this.getPositionVector();
 
-		Vec3d s = p.add(0, this.height / 2, 0);
+		Vec3d s = p.addVector((double) 0, (double) (this.height / 2), (double) 0);
 		AxisAlignedBB inclusionBox = new AxisAlignedBB(s.x, s.y, s.z, s.x, s.y, s.z).grow(this.collisionsInclusionRange);
 
 		List<AxisAlignedBB> boxes = this.world.getCollisionBoxes(this, inclusionBox);

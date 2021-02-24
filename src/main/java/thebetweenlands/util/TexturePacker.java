@@ -149,7 +149,7 @@ public class TexturePacker {
 	}
 
 	protected ResourceLocation generateNewTextureLocation() {
-		ResourceLocation rl = new ResourceLocation(this.textureName.getNamespace(), this.textureName.getPath() + "_" + this.packedTextureID);
+		ResourceLocation rl = new ResourceLocation(this.textureName.getResourceDomain(), this.textureName.getResourcePath() + "_" + this.packedTextureID);
 		this.packedTextureID++;
 		return rl;
 	}
@@ -157,7 +157,7 @@ public class TexturePacker {
 	protected BufferedImage getOrLoadTexture(ResourceLocation location, IResourceManager manager) {
 		BufferedImage cached = this.cachedTextures.get(location);
 		if(cached == null) {
-			try(IResource resource = manager.getResource(new ResourceLocation(location.getNamespace(), "textures/" + location.getPath() + ".png"))) {
+			try(IResource resource = manager.getResource(new ResourceLocation(location.getResourceDomain(), "textures/" + location.getResourcePath() + ".png"))) {
 				this.cachedTextures.put(location, cached = ImageIO.read(resource.getInputStream()));
 			} catch (IOException e) {
 				TheBetweenlands.logger.error("Failed loading model texture to pack. Location: " + location, e);

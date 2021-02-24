@@ -44,7 +44,7 @@ public class BlockPurifier extends BasicBlock implements ITileEntityProvider {
 		super(Material.ROCK);
 		setHardness(2.0F);
 		setResistance(5.0F);
-		setTranslationKey("thebetweenlands.purifier");
+		setUnlocalizedName("thebetweenlands.purifier");
 		setCreativeTab(BLCreativeTabs.BLOCKS);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
@@ -165,7 +165,7 @@ public class BlockPurifier extends BasicBlock implements ITileEntityProvider {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byIndex(meta);
+		EnumFacing facing = EnumFacing.getFront(meta);
 
 		if (facing.getAxis() == EnumFacing.Axis.Y) {
 			facing = EnumFacing.NORTH;
@@ -176,7 +176,7 @@ public class BlockPurifier extends BasicBlock implements ITileEntityProvider {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

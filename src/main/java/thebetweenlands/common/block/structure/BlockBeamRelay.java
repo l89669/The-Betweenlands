@@ -56,7 +56,7 @@ public class BlockBeamRelay extends BlockDirectional implements ITileEntityProvi
 	}
 
 	@Override
-    public EnumPushReaction getPushReaction(IBlockState state) {
+    public EnumPushReaction getMobilityFlag(IBlockState state) {
         return EnumPushReaction.BLOCK;
     }
 
@@ -67,7 +67,7 @@ public class BlockBeamRelay extends BlockDirectional implements ITileEntityProvi
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta)).withProperty(POWERED, Boolean.valueOf((meta & 8) > 0));
+		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta)).withProperty(POWERED, Boolean.valueOf((meta & 8) > 0));
 	}
 
 	@Override

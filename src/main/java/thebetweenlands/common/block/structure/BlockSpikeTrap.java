@@ -47,7 +47,7 @@ public class BlockSpikeTrap extends BlockDirectional implements ITileEntityProvi
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -58,7 +58,7 @@ public class BlockSpikeTrap extends BlockDirectional implements ITileEntityProvi
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
+		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta));
 	}
 
 	@Override

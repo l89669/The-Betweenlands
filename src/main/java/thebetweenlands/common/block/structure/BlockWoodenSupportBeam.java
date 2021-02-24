@@ -141,7 +141,7 @@ public class BlockWoodenSupportBeam extends BlockHorizontal {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.byHorizontalIndex(meta & 0b11);
+		EnumFacing facing = EnumFacing.getHorizontal(meta & 0b11);
 		if (facing.getAxis() == EnumFacing.Axis.Y)
 			facing = EnumFacing.NORTH;
 		return getDefaultState().withProperty(FACING, facing).withProperty(TOP, Boolean.valueOf((meta & 0b100) > 0));

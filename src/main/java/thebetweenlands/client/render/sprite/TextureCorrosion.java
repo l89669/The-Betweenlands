@@ -55,9 +55,9 @@ public class TextureCorrosion extends TextureAtlasSprite {
 	public TextureCorrosion(String spriteName, ResourceLocation parentTexture, int corrosionAmount, long seed) {
 		super(spriteName);
 		this.parentTexture = parentTexture;
-		String spritePath = this.parentTexture.getPath();
+		String spritePath = this.parentTexture.getResourcePath();
 		spritePath = spritePath.substring("textures/".length(), spritePath.length() - ".png".length());
-		this.parentTextureSpriteName = new ResourceLocation(this.parentTexture.getNamespace(), spritePath);
+		this.parentTextureSpriteName = new ResourceLocation(this.parentTexture.getResourceDomain(), spritePath);
 		this.corrosionAmount = corrosionAmount;
 		this.seed = seed;
 	}

@@ -391,7 +391,7 @@ public class EntityFortressBoss extends EntityMob implements IEntityBL, IBLBoss,
 		if(source instanceof EntityDamageSource) {
 			AttackShieldResult result = attackShield(this.world, this.shield, new Vec3d(this.posX + SHIELD_OFFSET_X, this.posY + SHIELD_OFFSET_Y, this.posZ + SHIELD_OFFSET_Z), this.shieldRotationYaw, this.shieldRotationPitch, this.shieldRotationRoll, this.shieldExplosion, this.deflectionDamageCooldowns, source, false);
 			if(!result.deflected) {
-				if(result.pos != null && result.ray != null && this.coreBoundingBox.offset(this.posX, this.posY, this.posZ).calculateIntercept(result.pos, result.ray.add(result.pos.x, result.pos.y, result.pos.z)) != null) {
+				if(result.pos != null && result.ray != null && this.coreBoundingBox.offset(this.posX, this.posY, this.posZ).calculateIntercept(result.pos, result.ray.addVector(result.pos.x, result.pos.y, result.pos.z)) != null) {
 					return super.attackEntityFrom(source, damage);
 				} else {
 					return false;

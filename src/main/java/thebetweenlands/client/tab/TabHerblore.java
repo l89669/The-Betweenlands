@@ -9,7 +9,7 @@ public class TabHerblore extends CreativeTabBetweenlands {
 	}
 
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getTabIconItem() {
 		return EnumItemCrushed.GROUND_GENERIC_LEAF.create(1);
 	}
 }

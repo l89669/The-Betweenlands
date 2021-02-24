@@ -106,7 +106,7 @@ public class BlockPlantUnderwater extends BlockSwampWater implements net.minecra
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

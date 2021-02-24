@@ -104,7 +104,7 @@ public class EntityPredatorArrowGuide extends Entity {
 	protected void updateHomingTrajectory(Entity mountedEntity) {
 		if(!this.world.isRemote) {
 			Vec3d motion = new Vec3d(mountedEntity.motionX, mountedEntity.motionY, mountedEntity.motionZ);
-			double speed = motion.length();
+			double speed = motion.lengthVector();
 
 			EntityLivingBase bestTarget = null;
 

@@ -244,7 +244,7 @@ public class EntityStalker extends EntityClimberBase implements IMob {
 				penalty += Math.max(0, this.nearAngle - angle) / this.nearAngle * this.nearAnglePathingPenalty;
 				penalty += Math.max(0, (this.farAngle - this.nearAngle) - (angle - this.nearAngle)) / (this.farAngle - this.nearAngle) * this.farAnglePathingPenalty;
 
-				double dst = new Vec3d(pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f).subtract(target.getPositionEyes(1)).length();
+				double dst = new Vec3d(pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f).subtract(target.getPositionEyes(1)).lengthVector();
 
 				penalty += (1 - (MathHelper.clamp(dst, this.stalkingDistanceNear, this.stalkingDistanceFar) - this.stalkingDistanceNear) / (this.stalkingDistanceFar - this.stalkingDistanceNear)) * this.stalkingDistancePenalty;
 			}
@@ -271,7 +271,7 @@ public class EntityStalker extends EntityClimberBase implements IMob {
 				float dot = (float) look.dotProduct(dir);
 				float angle = (float) Math.toDegrees(Math.acos(dot));
 				if(angle < this.nearAngle) {
-					return new Vec3d(x + 0.5f, y + 0.5f, z + 0.5f).subtract(target.getPositionVector()).length() > this.getPositionVector().subtract(target.getPositionVector()).length();
+					return new Vec3d(x + 0.5f, y + 0.5f, z + 0.5f).subtract(target.getPositionVector()).lengthVector() > this.getPositionVector().subtract(target.getPositionVector()).lengthVector();
 				}
 
 				return false;
@@ -1045,7 +1045,7 @@ public class EntityStalker extends EntityClimberBase implements IMob {
 					Vec3d diff = target.getPositionVector().subtract(this.entity.getPositionVector());
 					double diffY = up.dotProduct(diff);
 
-					if(diffY <= -3.0D && diff.subtract(up.scale(diffY)).length() <= this.dropRadius) {
+					if(diffY <= -3.0D && diff.subtract(up.scale(diffY)).lengthVector() <= this.dropRadius) {
 						inRange = true;
 
 						if(this.dropTimer++ >= 40) {

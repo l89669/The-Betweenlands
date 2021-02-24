@@ -58,8 +58,8 @@ public class ItemChiromawEgg extends ItemMob {
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
-		return getTranslationKey();
+	public String getUnlocalizedName(ItemStack stack) {
+		return getUnlocalizedName();
 	}
 
 	@SideOnly(Side.CLIENT)

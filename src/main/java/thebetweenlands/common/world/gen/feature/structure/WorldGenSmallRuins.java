@@ -588,7 +588,7 @@ public class WorldGenSmallRuins extends WorldGenHelper {
 	}
 
 	private void generateLoot(World world, Random random, int x, int y, int z) {
-		world.setBlockState(new BlockPos(x, y, z), getRandomBlock(random, EnumFacing.byHorizontalIndex(random.nextInt(4))), 2);
+		world.setBlockState(new BlockPos(x, y, z), getRandomBlock(random, EnumFacing.getHorizontal(random.nextInt(4))), 2);
 		TileEntityLootPot lootPot = BlockLootPot.getTileEntity(world, new BlockPos(x, y, z));
 		if (lootPot != null) {
 			lootPot.setLootTable(LootTableRegistry.MARSH_RUINS_POT, random.nextLong());

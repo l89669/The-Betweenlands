@@ -97,7 +97,7 @@ public class DebugHandlerClient {
 
 						AxisAlignedBB aabb = location.getEnclosingBounds();
 						Vec3d center = new Vec3d((aabb.maxX + aabb.minX) / 2.0D, (aabb.maxY + aabb.minY) / 2.0D,
-								(aabb.maxZ + aabb.minZ) / 2.0D).add(
+								(aabb.maxZ + aabb.minZ) / 2.0D).addVector(
 										-Minecraft.getMinecraft().getRenderManager().viewerPosX,
 										-Minecraft.getMinecraft().getRenderManager().viewerPosY,
 										-Minecraft.getMinecraft().getRenderManager().viewerPosZ);
@@ -105,7 +105,7 @@ public class DebugHandlerClient {
 						GlStateManager.pushMatrix();
 						GlStateManager.translate(center.x, center.y, center.z);
 
-						float scale = Math.max(2.0F, (float) center.length() / 10.0F);
+						float scale = Math.max(2.0F, (float) center.lengthVector() / 10.0F);
 
 						GlStateManager.scale(scale, scale, scale);
 

@@ -13,7 +13,7 @@ public interface IGenericItem {
 	 * Returns the unlocalized name of this generic item
 	 * @return
 	 */
-	String getTranslationKey();
+	String getUnlocalizedName();
 
 	/**
 	 * Returns the model name of this generic item

@@ -46,9 +46,9 @@ public abstract class EntityMovingWallFace extends EntityWallFace {
 		if(this.isMoving() && this.world.isRemote) {
 			if(this.ticksExisted % 3 == 0) {
 				EnumFacing facing = this.getFacing();
-				double px = this.posX + facing.getXOffset() * this.width / 2;
-				double py = this.posY + this.height / 2 + facing.getYOffset() * this.height / 2;
-				double pz = this.posZ + facing.getZOffset() * this.width / 2;
+				double px = this.posX + facing.getFrontOffsetX() * this.width / 2;
+				double py = this.posY + this.height / 2 + facing.getFrontOffsetY() * this.height / 2;
+				double pz = this.posZ + facing.getFrontOffsetZ() * this.width / 2;
 				for(int i = 0; i < 24; i++) {
 					double rx = (this.world.rand.nextDouble() - 0.5D) * this.width;
 					double ry = (this.world.rand.nextDouble() - 0.5D) * this.height;
@@ -56,9 +56,9 @@ public abstract class EntityMovingWallFace extends EntityWallFace {
 					BlockPos pos = new BlockPos(px + rx, py + ry, pz + rz);
 					IBlockState state = this.world.getBlockState(pos);
 					if(!state.getBlock().isAir(state, this.world, pos)) {
-						double mx = facing.getXOffset() * 0.15F + (this.world.rand.nextDouble() - 0.5D) * 0.25F;
-						double my = facing.getYOffset() * 0.15F + (this.world.rand.nextDouble() - 0.5D) * 0.25F;
-						double mz = facing.getZOffset() * 0.15F + (this.world.rand.nextDouble() - 0.5D) * 0.25F;
+						double mx = facing.getFrontOffsetX() * 0.15F + (this.world.rand.nextDouble() - 0.5D) * 0.25F;
+						double my = facing.getFrontOffsetY() * 0.15F + (this.world.rand.nextDouble() - 0.5D) * 0.25F;
+						double mz = facing.getFrontOffsetZ() * 0.15F + (this.world.rand.nextDouble() - 0.5D) * 0.25F;
 						this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, px + rx, py + ry, pz + rz, mx, my, mz, Block.getStateId(state));
 					}
 				}
@@ -185,22 +185,22 @@ public abstract class EntityMovingWallFace extends EntityWallFace {
 
 						if(!this.stayInRange || target.getDistanceSqToCenter(pos) <= this.maxRangeSq) {
 							Vec3d center = new Vec3d(pos.getX() + this.entity.getBlockWidth() / 2.0D, pos.getY() + this.entity.getBlockHeight() / 2.0D, pos.getZ() + this.entity.getBlockWidth() / 2.0D);
-							Vec3d lookDir = target.getPositionVector().add(0, target.getEyeHeight(), 0).subtract(center);
+							Vec3d lookDir = target.getPositionVector().addVector((double) 0, (double) target.getEyeHeight(), (double) 0).subtract(center);
 
 							EnumFacing facing = EnumFacing.getFacingFromVector((float)lookDir.x, (float)lookDir.y, (float)lookDir.z);
 
 							if(this.canSeeFrom(pos, facing, target) && this.entity.checkAnchorAt(center, lookDir, AnchorChecks.ALL) == 0) {
 								this.entity.moveHelper.setMoveTo(center.x, center.y, center.z, 1);
-								this.entity.lookHelper.setLookDirection(facing.getXOffset(), facing.getYOffset(), facing.getZOffset());
+								this.entity.lookHelper.setLookDirection(facing.getFrontOffsetX(), facing.getFrontOffsetY(), facing.getFrontOffsetZ());
 								break;
 							} else {
 								for(EnumFacing otherFacing : EnumFacing.HORIZONTALS) {
 									if(otherFacing != facing) {
-										lookDir = new Vec3d(otherFacing.getXOffset(), 0, otherFacing.getZOffset());
+										lookDir = new Vec3d(otherFacing.getFrontOffsetX(), 0, otherFacing.getFrontOffsetZ());
 
 										if(this.canSeeFrom(pos, otherFacing, target) && this.entity.checkAnchorAt(center, lookDir, AnchorChecks.ALL) == 0) {
 											this.entity.moveHelper.setMoveTo(center.x, center.y, center.z, 1);
-											this.entity.lookHelper.setLookDirection(otherFacing.getXOffset(), otherFacing.getYOffset(), otherFacing.getZOffset());
+											this.entity.lookHelper.setLookDirection(otherFacing.getFrontOffsetX(), otherFacing.getFrontOffsetY(), otherFacing.getFrontOffsetZ());
 											break;
 										} 
 									}
@@ -216,7 +216,7 @@ public abstract class EntityMovingWallFace extends EntityWallFace {
 		}
 
 		protected boolean canSeeFrom(BlockPos pos, EnumFacing facing, Entity entity) {
-			return this.entity.world.rayTraceBlocks(new Vec3d(pos.getX() + this.entity.getBlockWidth() / 2.0D + facing.getXOffset() * (this.entity.width / 2 + this.entity.getPeek()), pos.getY() + this.entity.getBlockHeight() / 2.0D + facing.getYOffset() * (this.entity.height / 2 + this.entity.getPeek()), pos.getZ() + this.entity.getBlockWidth() / 2.0D + facing.getZOffset() * (this.entity.width / 2 + this.entity.getPeek())), new Vec3d(entity.posX, entity.posY + (double)entity.getEyeHeight(), entity.posZ), false, true, false) == null;
+			return this.entity.world.rayTraceBlocks(new Vec3d(pos.getX() + this.entity.getBlockWidth() / 2.0D + facing.getFrontOffsetX() * (this.entity.width / 2 + this.entity.getPeek()), pos.getY() + this.entity.getBlockHeight() / 2.0D + facing.getFrontOffsetY() * (this.entity.height / 2 + this.entity.getPeek()), pos.getZ() + this.entity.getBlockWidth() / 2.0D + facing.getFrontOffsetZ() * (this.entity.width / 2 + this.entity.getPeek())), new Vec3d(entity.posX, entity.posY + (double)entity.getEyeHeight(), entity.posZ), false, true, false) == null;
 		}
 
 		@Override

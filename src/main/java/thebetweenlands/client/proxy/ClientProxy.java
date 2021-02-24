@@ -713,7 +713,7 @@ public class ClientProxy extends CommonProxy implements IResourceManagerReloadLi
 	@SuppressWarnings("deprecation")
 	@Override
 	public void postInit() {
-		File galleryFolder = new File(new File(Minecraft.getMinecraft().gameDir, "betweenlands_gallery"), "gallery_" + ModInfo.GALLERY_VERSION);
+		File galleryFolder = new File(new File(Minecraft.getMinecraft().mcDataDir, "betweenlands_gallery"), "gallery_" + ModInfo.GALLERY_VERSION);
 		galleryFolder.mkdirs();
 		GalleryManager.INSTANCE.checkAndUpdate(galleryFolder);
 		
@@ -890,15 +890,15 @@ public class ClientProxy extends CommonProxy implements IResourceManagerReloadLi
 					JsonObject jsonObj = array.get(i).getAsJsonObject();
 					
 					ResourceLocation textureMask = new ResourceLocation(JsonUtils.getString(jsonObj, "texture_mask"));
-					textureMask = new ResourceLocation(textureMask.getNamespace(), "textures/" + textureMask.getPath());
+					textureMask = new ResourceLocation(textureMask.getResourceDomain(), "textures/" + textureMask.getResourcePath());
 					
 					ResourceLocation textureOverlay = new ResourceLocation(JsonUtils.getString(jsonObj, "texture_overlay"));
-					textureOverlay = new ResourceLocation(textureMask.getNamespace(), "textures/" + textureOverlay.getPath());
+					textureOverlay = new ResourceLocation(textureMask.getResourceDomain(), "textures/" + textureOverlay.getResourcePath());
 					
 					ResourceLocation textureAltOverlay = null;
 					if(jsonObj.has("texture_alt_overlay")) {
 						textureAltOverlay = new ResourceLocation(JsonUtils.getString(jsonObj, "texture_alt_overlay"));
-						textureAltOverlay = new ResourceLocation(textureAltOverlay.getNamespace(), "textures/" + textureAltOverlay.getPath());
+						textureAltOverlay = new ResourceLocation(textureAltOverlay.getResourceDomain(), "textures/" + textureAltOverlay.getResourcePath());
 					}
 					
 					JsonObject yawJson = JsonUtils.getJsonObject(jsonObj, "yaw");

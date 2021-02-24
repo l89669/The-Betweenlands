@@ -145,7 +145,7 @@ public abstract class AbstractCenserRecipe<T> implements ICenserRecipe<T> {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void getLocalizedEffectText(T context, ICenser censer, List<String> tooltip) {
-		String key = String.format("tooltip.bl.censer.effect.%s", this.getId().getPath());
+		String key = String.format("tooltip.bl.censer.effect.%s", this.getId().getResourcePath());
 
 		tooltip.addAll(ItemTooltipHandler.splitTooltip(I18n.translateToLocal(key), TextFormatting.WHITE.toString()));
 

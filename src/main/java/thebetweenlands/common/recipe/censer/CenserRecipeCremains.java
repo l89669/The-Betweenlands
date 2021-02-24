@@ -96,7 +96,7 @@ public class CenserRecipeCremains extends AbstractCenserRecipe<Void> {
 
 			check : for(int cx = sx; cx <= ex; cx++) {
 				for(int cz = sz; cz <= ez; cz++) {
-					Chunk chunk = entity.world.getChunk(cx, cz);
+					Chunk chunk = entity.world.getChunkFromChunkCoords(cx, cz);
 
 					for(Entry<BlockPos, TileEntity> entry : chunk.getTileEntityMap().entrySet()) {
 						TileEntity tile = entry.getValue();

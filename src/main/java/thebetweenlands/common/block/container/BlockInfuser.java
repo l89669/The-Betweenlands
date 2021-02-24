@@ -58,7 +58,7 @@ public class BlockInfuser extends BlockContainer {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 3));
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class BlockInfuser extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		int rotation = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-		state = state.withProperty(FACING, EnumFacing.byHorizontalIndex(rotation));
+		state = state.withProperty(FACING, EnumFacing.getHorizontal(rotation));
 		worldIn.setBlockState(pos, state, 3);
 	}
 

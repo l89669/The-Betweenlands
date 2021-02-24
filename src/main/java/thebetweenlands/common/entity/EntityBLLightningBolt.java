@@ -165,7 +165,7 @@ public class EntityBLLightningBolt extends EntityLightningBolt implements IEntit
 				Vec3d diff = end.subtract(start);
 				Vec3d dir = diff.normalize();
 
-				double length = diff.length();
+				double length = diff.lengthVector();
 
 				double range = 5.0D;
 
@@ -181,7 +181,7 @@ public class EntityBLLightningBolt extends EntityLightningBolt implements IEntit
 
 							Vec3d projection = start.add(dir.scale(dir.dotProduct(entityPos.subtract(start))));
 
-							if(projection.subtract(entityPos).length() < range) {
+							if(projection.subtract(entityPos).lengthVector() < range) {
 
 								if(entity instanceof EntityItem) {
 									EntityItem entityItem = (EntityItem) entity;

@@ -38,7 +38,7 @@ public class EntityPropertySludgeWormSquashed implements EntityProperty {
 
 		@Override
 		public EntityPropertySludgeWormSquashed deserialize(JsonElement element, JsonDeserializationContext deserializationContext) {
-			return new EntityPropertySludgeWormSquashed(JsonUtils.getBoolean(element, this.getName().getPath()));
+			return new EntityPropertySludgeWormSquashed(JsonUtils.getBoolean(element, this.getName().getResourcePath()));
 		}
 	}
 }

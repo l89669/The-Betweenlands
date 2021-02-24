@@ -10,7 +10,7 @@ public class TabPlants extends CreativeTabBetweenlands {
 	}
 
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getTabIconItem() {
 		return new ItemStack(Item.getItemFromBlock(BlockRegistry.MIRE_CORAL));
 	}
 }

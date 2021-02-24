@@ -170,8 +170,8 @@ public class EntityMovingWall extends Entity implements IEntityScreenShake, IEnt
 		
 		if(!isHoldingStill()) {
 			motionY = 0;
-			motionX = heading.getXOffset() * speed;
-			motionZ = heading.getZOffset() * speed;
+			motionX = heading.getFrontOffsetX() * speed;
+			motionZ = heading.getFrontOffsetZ() * speed;
 			
 			posX += motionX;
 			posY += motionY;

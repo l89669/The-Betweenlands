@@ -284,7 +284,7 @@ public class EntityLargeSludgeWorm extends EntitySludgeWorm {
 
 		Vec3d look = this.getLookVec();
 
-		points[0] = this.parts[0].getPositionVector().add(-origin.x + look.x, -origin.y + look.y, -origin.z + look.z);
+		points[0] = this.parts[0].getPositionVector().addVector(-origin.x + look.x, -origin.y + look.y, -origin.z + look.z);
 		for(int i = 0; i < this.parts.length; i++) {
 			MultiPartEntityPart part = this.parts[i];
 
@@ -316,9 +316,9 @@ public class EntityLargeSludgeWorm extends EntitySludgeWorm {
 
 		Vec3d endPoint;
 		if(partDir != null) {
-			endPoint = this.parts[this.parts.length - 1].getPositionVector().add(-origin.x + partDir.x, -origin.y + partDir.y, -origin.z + partDir.z);
+			endPoint = this.parts[this.parts.length - 1].getPositionVector().addVector(-origin.x + partDir.x, -origin.y + partDir.y, -origin.z + partDir.z);
 		} else {
-			endPoint = this.parts[this.parts.length - 1].getPositionVector().add(-origin.x, -origin.y- 0.0001D, -origin.z);
+			endPoint = this.parts[this.parts.length - 1].getPositionVector().addVector(-origin.x, -origin.y- 0.0001D, -origin.z);
 		}
 		points[this.parts.length + 1] = endPoint;
 

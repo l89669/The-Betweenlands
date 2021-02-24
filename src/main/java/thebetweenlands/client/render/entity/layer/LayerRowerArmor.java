@@ -105,7 +105,7 @@ public class LayerRowerArmor extends LayerBipedArmor {
 			String owner = "???";
 			if (reg != null) {
 				name = reg.toString();
-				ModContainer mod = Loader.instance().getIndexedModList().get(reg.getNamespace());
+				ModContainer mod = Loader.instance().getIndexedModList().get(reg.getResourceDomain());
 				if (mod != null) {
 					owner = mod.getName();
 				}

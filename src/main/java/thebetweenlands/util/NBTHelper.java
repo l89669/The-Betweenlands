@@ -146,7 +146,7 @@ public class NBTHelper {
             }
         }
 
-        if (!nbttaglist.isEmpty() || saveEmpty)
+        if (!nbttaglist.hasNoTags() || saveEmpty)
         {
             tag.setTag("Items", nbttaglist);
         }
